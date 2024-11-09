@@ -1,1 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Detalles de la Materia - Estudio Interactivo</title>
+    <style>
+        /* Reset de márgenes y paddings */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #e3f2fd;
+            color: #333;
+            background-image: url('https://www.transparenttextures.com/patterns/education.png');
+            background-size: 120px 120px; /* Fondo educativo */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 4rem; /* Título más grande */
+            margin-bottom: 30px;
+            color: transparent;
+            background: linear-gradient(to right, #4CAF50, #8BC34A, #388E3C); /* Gradiente de varios tonos de verde */
+            -webkit-background-clip: text; /* Hace que el gradiente se aplique al texto */
+            background-clip: text; /* Propiedad estándar para soportar todos los navegadores */
+            text-align: center;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+            animation: slideDown 1s ease-out forwards;
+        }
+
+        /* Animación para el título */
+        @keyframes slideDown {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Contenedor para los globos de texto */
+        .container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out forwards;
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* Animación de entrada desde abajo */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Estilos de los globos de texto */
+        .balloon {
+            background-color: #ffffff;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            font-size: 1.2rem;
+            text-align: left;
+            color: #333;
+            animation: fadeInUp 1s ease-out forwards;
+        }
+
+        /* Hover en los globos de texto */
+        .balloon:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Títulos dentro de los globos */
+        .balloon h2 {
+            font-size: 2rem; /* Aumentamos el tamaño de los títulos dentro de los globos */
+            font-weight: bold;
+            color: transparent;
+            background: linear-gradient(to right, #4CAF50, #8BC34A, #388E3C); /* Gradiente de varios tonos de verde */
+            -webkit-background-clip: text; /* Hace que el gradiente se aplique al texto */
+            background-clip: text; /* Propiedad estándar para soportar todos los navegadores */
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        /* Descripciones dentro de los globos */
+        .balloon p {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* Animación de desplazamiento para hacer scroll */
+        @keyframes bounceIn {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        footer {
+            position: fixed;
+            bottom: 20px;
+            text-align: center;
+            font-size: 1rem;
+            color: #555;
+        }
+
+        footer a {
+            text-decoration: none;
+            color: #5c6bc0;
+        }
+
+        /* Hacer la página responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3.5rem; /* Reducir ligeramente el tamaño del título en pantallas medianas */
+                margin-bottom: 20px;
+            }
+
+            .container {
+                width: 100%;
+                padding: 10px;
+            }
+
+            .balloon {
+                padding: 20px;
+                font-size: 1.1rem; /* Reducir tamaño de la fuente en móviles */
+            }
+
+            .balloon h2 {
+                font-size: 1.7rem; /* Aumentar el tamaño de los títulos dentro de los globos */
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2.5rem; /* Aún más pequeño en pantallas muy pequeñas */
+                margin-bottom: 15px;
+            }
+
+            .balloon {
+                padding: 15px;
+            }
+
+            .balloon h2 {
+                font-size: 1.5rem; /* Ajuste para dispositivos más pequeños */
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1>Detalles de la Materia</h1>
+
+    <div class="container">
+        <!-- Globo de texto Materia -->
+        <div class="balloon">
+            <h2>Materia</h2>
+            <p>Descripción de la materia: Esta es la descripción de la materia de Matemáticas. Cubriremos desde álgebra básica hasta cálculo avanzado. La materia está diseñada para fomentar el pensamiento crítico y la resolución de problemas complejos.</p>
+        </div>
+
+        <!-- Globo de texto Temario -->
+        <div class="balloon">
+            <h2>Temario</h2>
+            <p>El temario de esta materia incluye: Álgebra, ecuaciones, trigonometría, cálculo y geometría. Cada módulo incluye teoría, ejemplos prácticos y ejercicios diseñados para reforzar los conceptos aprendidos.</p>
+        </div>
+
+        <!-- Globo de texto Formas de Estudio -->
+        <div class="balloon">
+            <h2>Formas de Estudio</h2>
+            <p>Las formas de estudio son diversas: clases interactivas, trabajo en equipo, recursos online y tutorías. Se recomienda complementar los estudios con prácticas diarias y el uso de materiales digitales para reforzar los conocimientos.</p>
+        </div>
+    </div>
+
+    <footer>
+        Página Creada por: <a href="https://www.linkedin.com/in/luisandreszamora" target="_blank">Luis Andres Zamora Aguilar</a>
+    </footer>
+
+</body>
+</html>
