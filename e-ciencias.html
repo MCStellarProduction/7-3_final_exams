@@ -30,7 +30,10 @@
         h1 {
             font-size: 3rem;
             margin-bottom: 30px;
-            color: #3f51b5; /* Color morado para el título */
+            color: transparent;
+            background: linear-gradient(to right, #FFEB3B, #9C27B0); /* Gradiente de amarillo a morado */
+            -webkit-background-clip: text; /* Hace que el gradiente se aplique al texto */
+            background-clip: text; /* Propiedad estándar para soportar todos los navegadores */
             text-align: center;
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
             animation: slideDown 1s ease-out forwards;
@@ -95,7 +98,10 @@
         .balloon h2 {
             font-size: 1.6rem;
             font-weight: bold;
-            color: #1976d2; /* Azul fuerte para los títulos */
+            color: transparent;
+            background: linear-gradient(to right, #FFEB3B, #9C27B0); /* Gradiente de amarillo a morado */
+            -webkit-background-clip: text; /* Hace que el gradiente se aplique al texto */
+            background-clip: text; /* Propiedad estándar para soportar todos los navegadores */
             margin-bottom: 15px;
             text-transform: uppercase;
         }
