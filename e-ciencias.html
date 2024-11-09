@@ -1,1 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Detalles de la Materia</title>
+    <style>
+        /* Reset de márgenes y paddings */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            color: #333;
+            background-image: url('https://www.transparenttextures.com/patterns/education.png'); /* Fondo educativo */
+            background-size: 120px 120px; /* Tamaño del patrón */
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #5c6bc0;
+            text-align: center;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Contenedor principal para los globos de texto */
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            opacity: 0;
+            animation: fadeIn 1s forwards; /* Animación de entrada */
+        }
+
+        /* Animación fadeIn */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Estilos de los globos de texto */
+        .balloon {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 25px;
+            width: 80%;
+            max-width: 700px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1s forwards;
+            text-align: left;
+            font-size: 1.2rem;
+        }
+
+        .balloon h2 {
+            font-size: 1.6rem;
+            color: #5c6bc0;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .balloon p {
+            color: #555;
+            font-size: 1rem;
+        }
+
+        footer {
+            position: fixed;
+            bottom: 20px;
+            text-align: center;
+            font-size: 1rem;
+            color: #555;
+        }
+
+        footer a {
+            text-decoration: none;
+            color: #5c6bc0;
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1>Detalles de la Materia</h1>
+
+    <div class="container">
+        <!-- Globo de texto Materia -->
+        <div class="balloon">
+            <h2>Materia</h2>
+            <p>Descripción de la materia: La materia de Matemáticas se enfoca en el estudio de conceptos como álgebra, geometría, cálculo y más. Es fundamental para desarrollar habilidades de resolución de problemas y pensamiento crítico.</p>
+        </div>
+
+        <!-- Globo de texto Temario -->
+        <div class="balloon">
+            <h2>Temario</h2>
+            <p>El temario cubre los siguientes temas principales: Álgebra básica, geometría analítica, funciones, ecuaciones y más. Cada tema tiene actividades prácticas y ejemplos detallados.</p>
+        </div>
+
+        <!-- Globo de texto Formas de Estudio -->
+        <div class="balloon">
+            <h2>Formas de Estudio</h2>
+            <p>Las formas de estudio incluyen clases presenciales, materiales de lectura, videos educativos y ejercicios prácticos. Se recomienda el estudio constante y la práctica para mejorar el rendimiento en la materia.</p>
+        </div>
+    </div>
+
+    <footer>
+        Página Creada por: <a href="https://www.linkedin.com/in/luisandreszamora" target="_blank">Luis Andres Zamora Aguilar</a>
+    </footer>
+
+</body>
+</html>
 
