@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Detalles de la Materia</title>
+    <title>Detalles de la Materia - Estudio Interactivo</title>
     <style>
         /* Reset de márgenes y paddings */
         * {
@@ -15,69 +15,105 @@
 
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #f4f4f9;
+            background-color: #e3f2fd;
+            color: #333;
+            background-image: url('https://www.transparenttextures.com/patterns/education.png');
+            background-size: 120px 120px; /* Fondo educativo */
             display: flex;
             flex-direction: column;
-            align-items: center;
             justify-content: center;
+            align-items: center;
             height: 100vh;
-            color: #333;
-            background-image: url('https://www.transparenttextures.com/patterns/education.png'); /* Fondo educativo */
-            background-size: 120px 120px; /* Tamaño del patrón */
+            padding: 20px;
         }
 
         h1 {
             font-size: 3rem;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
             color: #5c6bc0;
             text-align: center;
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+            animation: slideDown 1s ease-out forwards;
         }
 
-        /* Contenedor principal para los globos de texto */
-        .container {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 30px;
-            opacity: 0;
-            animation: fadeIn 1s forwards; /* Animación de entrada */
-        }
-
-        /* Animación fadeIn */
-        @keyframes fadeIn {
+        /* Animación para el título */
+        @keyframes slideDown {
             from {
+                transform: translateY(-50px);
                 opacity: 0;
             }
             to {
+                transform: translateY(0);
                 opacity: 1;
+            }
+        }
+
+        /* Contenedor para los globos de texto */
+        .container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out forwards;
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        /* Animación de entrada desde abajo */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
 
         /* Estilos de los globos de texto */
         .balloon {
             background-color: #ffffff;
-            padding: 20px;
-            border-radius: 25px;
-            width: 80%;
-            max-width: 700px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            animation: fadeIn 1s forwards;
-            text-align: left;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             font-size: 1.2rem;
+            text-align: left;
+            animation: fadeInUp 1s ease-out forwards;
         }
 
+        /* Hover en los globos de texto */
+        .balloon:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Estilo de los títulos dentro de los globos */
         .balloon h2 {
             font-size: 1.6rem;
-            color: #5c6bc0;
-            margin-bottom: 10px;
             font-weight: bold;
+            color: #5c6bc0;
+            margin-bottom: 15px;
+            text-transform: uppercase;
         }
 
+        /* Descripciones dentro de los globos */
         .balloon p {
             color: #555;
-            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* Animación de desplazamiento para hacer scroll */
+        @keyframes bounceIn {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
 
         footer {
@@ -93,6 +129,23 @@
             color: #5c6bc0;
         }
 
+        /* Efecto al hacer scroll */
+        .fade-in {
+            opacity: 0;
+            animation: fadeInScroll 1s forwards;
+        }
+
+        @keyframes fadeInScroll {
+            0% {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -101,21 +154,21 @@
 
     <div class="container">
         <!-- Globo de texto Materia -->
-        <div class="balloon">
+        <div class="balloon fade-in">
             <h2>Materia</h2>
-            <p>Descripción de la materia: La materia de Matemáticas se enfoca en el estudio de conceptos como álgebra, geometría, cálculo y más. Es fundamental para desarrollar habilidades de resolución de problemas y pensamiento crítico.</p>
+            <p>Descripción de la materia: Esta es la descripción de la materia de Matemáticas. Cubriremos desde álgebra básica hasta cálculo avanzado. La materia está diseñada para fomentar el pensamiento crítico y la resolución de problemas complejos.</p>
         </div>
 
         <!-- Globo de texto Temario -->
-        <div class="balloon">
+        <div class="balloon fade-in">
             <h2>Temario</h2>
-            <p>El temario cubre los siguientes temas principales: Álgebra básica, geometría analítica, funciones, ecuaciones y más. Cada tema tiene actividades prácticas y ejemplos detallados.</p>
+            <p>El temario de esta materia incluye: Álgebra, ecuaciones, trigonometría, cálculo y geometría. Cada módulo incluye teoría, ejemplos prácticos y ejercicios diseñados para reforzar los conceptos aprendidos.</p>
         </div>
 
         <!-- Globo de texto Formas de Estudio -->
-        <div class="balloon">
+        <div class="balloon fade-in">
             <h2>Formas de Estudio</h2>
-            <p>Las formas de estudio incluyen clases presenciales, materiales de lectura, videos educativos y ejercicios prácticos. Se recomienda el estudio constante y la práctica para mejorar el rendimiento en la materia.</p>
+            <p>Las formas de estudio son diversas: clases interactivas, trabajo en equipo, recursos online y tutorías. Se recomienda complementar los estudios con prácticas diarias y el uso de materiales digitales para reforzar los conocimientos.</p>
         </div>
     </div>
 
@@ -125,4 +178,3 @@
 
 </body>
 </html>
-
