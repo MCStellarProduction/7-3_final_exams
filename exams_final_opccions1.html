@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Grupo 7-3</title>
+    <style>
+        /* Reset de márgenes y paddings */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            color: #333;
+            background-image: url('https://www.transparenttextures.com/patterns/education.png'); /* Fondo educativo */
+            background-size: 120px 120px; /* Tamaño del patrón */
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 30px;
+            color: #5c6bc0;
+            text-align: center;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); /* Sombra para darle profundidad */
+        }
+
+        /* Contenedor principal */
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            opacity: 0;
+            animation: fadeIn 1s forwards; /* Animación de entrada */
+        }
+
+        /* Animación fadeIn */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Estilos de los botones */
+        .option {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #ffffff;
+            border-radius: 15px;
+            width: 250px;
+            height: 60px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            font-size: 1.2rem;
+            color: #444;
+            font-weight: bold;
+            padding: 0 15px;
+            gap: 10px;
+        }
+
+        /* Efecto de hover en los botones */
+        .option:hover {
+            transform: scale(1.1);
+        }
+
+        /* Colores específicos para cada opción */
+        .examenes {
+            background-color: #81c784; /* Verde */
+        }
+
+        .lista {
+            background-color: #64b5f6; /* Azul */
+        }
+
+        .anuncios {
+            background-color: #ffb74d; /* Naranja */
+        }
+
+        .eximidos {
+            background-color: #ba68c8; /* Morado */
+        }
+
+        .estudio {
+            background-color: #ffd54f; /* Amarillo */
+        }
+
+        /* Iconos en los botones */
+        .option i {
+            font-size: 1.5rem;
+        }
+
+        /* Estilo para el footer */
+        footer {
+            position: fixed;
+            bottom: 20px;
+            text-align: center;
+            font-size: 1rem;
+            color: #555;
+        }
+
+        footer a {
+            text-decoration: none;
+            color: #5c6bc0;
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1>Grupo 7-3</h1>
+
+    <div class="container">
+        <!-- Opciones con iconos -->
+        <div class="option examenes" onclick="redirectTo('https://link-a-examenes.com')">
+            <i class="fas fa-pencil-alt"></i> Examenes Finales
+        </div>
+        <div class="option lista" onclick="redirectTo('https://link-a-lista.com')">
+            <i class="fas fa-users"></i> Lista del Grupo
+        </div>
+        <div class="option anuncios" onclick="redirectTo('https://link-a-anuncios.com')">
+            <i class="fas fa-bullhorn"></i> Anuncios
+        </div>
+        <div class="option eximidos" onclick="redirectTo('https://link-a-eximidos.com')">
+            <i class="fas fa-check-circle"></i> Eximidos
+        </div>
+        <div class="option estudio" onclick="redirectTo('https://link-a-estudio.com')">
+            <i class="fas fa-book"></i> Estudio
+        </div>
+    </div>
+
+    <footer>
+        Página Creada por: <a href="https://www.linkedin.com/in/luisandreszamora" target="_blank">Luis Andres Zamora Aguilar</a>
+    </footer>
+
+    <!-- Font Awesome para los iconos -->
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    
+    <script>
+        // Función para redireccionar con animación
+        function redirectTo(url) {
+            // Animación de salida (escala)
+            const options = document.querySelectorAll('.option');
+            options.forEach(option => {
+                option.style.transform = 'scale(0)';
+            });
+            setTimeout(() => {
+                window.location.href = url;
+            }, 300); // Esperamos que termine la animación antes de redirigir
+        }
+    </script>
+
+</body>
+</html>
+
