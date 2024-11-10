@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temporizador</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+        .timer {
+            font-size: 48px;
+            color: #333;
+            text-align: center;
+        }
+        .number {
+            transition: transform 0.3s ease-in-out;
+        }
+        .fade-in {
+            transform: scale(1.2);
+            opacity: 1;
+        }
+        .fade-out {
+            transform: scale(0.8);
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="timer" id="timer">
+        <span class="number" id="days">00</span> días 
+        <span class="number" id="hours">00</span> horas 
+        <span class="number" id="minutes">00</span> minutos 
+        <span class="number" id="seconds">00</span> segundos
+    </div>
+
+    <script>
+        // Fecha objetivo
+        const countDownDate = new Date("November 10, 2024 07:00:00").getTime();
+        const redirectUrl = "https://www.ejemplo.com"; // URL de redirección
+
+        // Actualizar el temporizador cada segundo
+        const interval = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = countDownDate - now;
+
+            // Calcular el tiempo restante
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Actualizar los elementos del temporizador
+            updateTimer("days", days);
+            updateTimer("hours", hours);
+            updateTimer("minutes", minutes);
+            updateTimer("seconds", seconds);
+
+            // Si el temporizador termina, redirigir
+            if (distance < 0) {
+                clearInterval(interval);
+                window.location.href = redirectUrl; // Redirigir a la URL especificada
+            }
+        }, 1000);
+
+        function updateTimer(id, value) {
+            const element = document.getElementById(id);
+            const oldValue = element.textContent;
+
+            element.textContent = String(value).padStart(2, '0'); // Asegura que tenga 2 dígitos
+
+            if (oldValue !== element.textContent) {
+                // Añadir animación
+                element.classList.remove('fade-in');
+                element.classList.add('fade-out');
+                
+                // Esperar a que termine la animación para cambiar de clase
+                setTimeout(() => {
+                    element.classList.remove('fade-out');
+                    element.classList.add('fade-in');
+                }, 300); // Tiempo de la animación
+            }
+        }
+    </script>
+
+</body>
+</html>
