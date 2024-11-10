@@ -131,6 +131,24 @@
             color: #5c6bc0;
         }
 
+        .back-button {
+            background-color: #007bff; 
+            color: white; 
+            border: none; 
+            border-radius: 5px; 
+            padding: 10px 15px; 
+            font-size: 16px; 
+            cursor: pointer; 
+            display: flex;
+            align-items: center;
+        }
+        .back-button:hover {
+            background-color: #0056b3; 
+        }
+        .icon {
+            margin-right: 5px; 
+        }
+
         /* Hacer la página responsive */
         @media (max-width: 768px) {
             h1 {
@@ -190,9 +208,12 @@
         </div>
         
     </div>
+     <button class="back-button" onclick="window.location.href='https://www.ejemplo.';">
+        <span class="icon">&#8592;</span> Back
+     </button>
 
     <footer>
-        Página Creada por: <a href="https://www.instagram.com/redaguilar218/" target="_blank">Luis Andres Zamora Aguilar</a>
+        ⓘ El Proximo Examen 
     </footer>
 
 </body>
