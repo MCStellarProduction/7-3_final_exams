@@ -1,1 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Detalles de la Materia - Anuncios</title>
+    <style>
+        /* Reset de márgenes y paddings */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #e3f2fd;
+            color: #333;
+            background-image: url('https://www.transparenttextures.com/patterns/education.png');
+            background-size: 120px 120px; /* Fondo educativo */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 4rem; /* Título más grande */
+            margin-bottom: 30px;
+            color: transparent;
+            background: linear-gradient(to right, #4CAF50, #8BC34A, #388E3C); /* Gradiente de varios tonos de verde */
+            -webkit-background-clip: text; /* Hace que el gradiente se aplique al texto */
+            background-clip: text; /* Propiedad estándar para soportar todos los navegadores */
+            text-align: center;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+            animation: slideDown 1s ease-out forwards;
+        }
+
+        /* Animación para el título */
+        @keyframes slideDown {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Contenedor para los anuncios */
+        .announcement-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out forwards;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Animación de entrada desde abajo */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Estilos para los cubos de anuncios */
+        .announcement {
+            background-color: #ffffff;
+            padding: 30px;
+            width: 350px;
+            height: 250px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            font-size: 1.2rem;
+            color: #333;
+            animation: fadeInUp 1s ease-out forwards;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        /* Hover en los cubos de anuncios */
+        .announcement:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Títulos dentro de los cubos */
+        .announcement h2 {
+            font-size: 2.5rem; /* Títulos grandes */
+            font-weight: bold;
+            color: transparent;
+            background: linear-gradient(to right, #4CAF50, #8BC34A, #388E3C); /* Gradiente de varios tonos de verde */
+            -webkit-background-clip: text; /* Hace que el gradiente se aplique al texto */
+            background-clip: text; /* Propiedad estándar para soportar todos los navegadores */
+            margin-bottom: 15px;
+        }
+
+        /* Descripción dentro de los cubos */
+        .announcement p {
+            color: #555;
+            line-height: 1.5;
+        }
+
+        footer {
+            position: fixed;
+            bottom: 20px;
+            text-align: center;
+            font-size: 1rem;
+            color: #555;
+        }
+
+        footer a {
+            text-decoration: none;
+            color: #5c6bc0;
+        }
+
+        /* Hacer la página responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3.5rem; /* Reducir ligeramente el tamaño del título en pantallas medianas */
+                margin-bottom: 20px;
+            }
+
+            .announcement-container {
+                width: 100%;
+                padding: 10px;
+            }
+
+            .announcement {
+                width: 280px;
+                padding: 20px;
+                font-size: 1rem;
+            }
+
+            .announcement h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2.5rem; /* Aún más pequeño en pantallas muy pequeñas */
+                margin-bottom: 15px;
+            }
+
+            .announcement {
+                width: 90%;
+                padding: 15px;
+            }
+
+            .announcement h2 {
+                font-size: 1.8rem; /* Ajuste para dispositivos más pequeños */
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1>Anuncios</h1>
+
+    <div class="announcement-container">
+        <!-- Primer cubo de anuncio -->
+        <div class="announcement">
+            <h2>ANUNCIO:</h2>
+            <p>Cambio de horario: La clase de Matemáticas se moverá al lunes a las 9:00 AM. Por favor, ajusten su agenda.</p>
+        </div>
+
+        <!-- Segundo cubo de anuncio -->
+        <div class="announcement">
+            <h2>ANUNCIO:</h2>
+            <p>Anuncio importante: El examen final de Ciencias se realizará el próximo viernes, 25 de noviembre. Estén preparados.</p>
+        </div>
+
+        <!-- Tercer cubo de anuncio -->
+        <div class="announcement">
+            <h2>ANUNCIO:</h2>
+            <p>Cambio de profesor: A partir de la próxima semana, el profesor de Inglés será el Sr. Pérez. ¡Bienvenidos!</p>
+        </div>
+    </div>
+
+    <footer>
+        Página Creada por: <a href="https://www.linkedin.com/in/luisandreszamora" target="_blank">Luis Andres Zamora Aguilar</a>
+    </footer>
+
+</body>
+</html>
