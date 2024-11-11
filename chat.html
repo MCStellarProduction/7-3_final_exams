@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat Educativo con Animaciones</title>
+    <title>Chat Educativo</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
@@ -13,57 +13,85 @@
             display: flex;
             flex-direction: column;
             height: 100vh;
-            background-color: #f0f8ff; /* Color de fondo */
-            align-items: center; /* Centrar el contenido horizontalmente */
+            background: linear-gradient(to right, #4e54c8, #8f94fb); /* Degradado de fondo */
+            align-items: center;
+            justify-content: center; /* Centrar verticalmente */
         }
+
         h1 {
-            text-align: center;
-            color: #007BFF; /* Color del título */
+            color: #ffffff; /* Color del título */
             margin: 20px 0;
+            font-size: 3em; /* Tamaño del título */
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* Sombra del título */
+            transition: color 0.3s; /* Transición de color suave */
         }
+
         #chat-container {
             flex: 1;
             display: flex;
             flex-direction: column;
             padding: 20px;
             overflow-y: auto;
-            border: 2px solid #007BFF; /* Borde azul */
-            border-radius: 10px;
-            background-color: #ffffff; /* Fondo blanco */
-            margin: 0 20px;
-            position: relative;
-            width: 90%; /* Ancho ajustable */
+            border-radius: 15px;
+            background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco con transparencia */
+            margin: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* Sombra del contenedor */
+            width: 80%; /* Ancho ajustable */
+            max-width: 600px; /* Ancho máximo */
+            transition: transform 0.3s; /* Suavizar el contenedor */
         }
+
+        #chat-container:hover {
+            transform: scale(1.02); /* Efecto de aumento al pasar el ratón */
+        }
+
         .message {
             margin: 10px 0;
-            padding: 10px;
+            padding: 15px;
             border-radius: 10px;
             position: relative;
-            max-width: 60%;
-            transition: transform 0.2s ease;
+            max-width: 70%;
             opacity: 0;
-            animation: fadeIn 0.5s forwards;
-            cursor: pointer; /* Cambia el cursor al pasar sobre el mensaje */
+            animation: fadeIn 0.5s forwards, slideIn 0.5s forwards; /* Animaciones de entrada */
+            cursor: pointer; /* Cambiar el cursor al pasar sobre el mensaje */
+            transition: background-color 0.3s ease; /* Transición suave para el color de fondo */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra de los mensajes */
         }
+
         @keyframes fadeIn {
-            to {
-                opacity: 1;
-            }
+            0% { opacity: 0; }
+            100% { opacity: 1; }
         }
+
+        @keyframes slideIn {
+            from { transform: translateY(10px); }
+            to { transform: translateY(0); }
+        }
+
+        .message:hover {
+            background-color: rgba(0, 123, 255, 0.2); /* Color al pasar el ratón */
+        }
+
         .message .username {
             font-weight: bold;
             position: absolute;
             top: -20px;
             left: 10px;
+            font-size: 0.9em; /* Tamaño del texto del usuario */
+            color: #007BFF; /* Color del nombre de usuario */
         }
+
         #input-container {
             display: flex;
             justify-content: space-between;
             padding: 10px;
             border-top: 1px solid #007BFF; /* Línea divisoria azul */
             background-color: #ffffff; /* Fondo blanco */
-            width: 90%; /* Ancho ajustable */
+            width: 80%; /* Ancho ajustable */
+            max-width: 600px; /* Ancho máximo */
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2); /* Sombra superior */
         }
+
         #username, #message {
             width: 45%; /* Ajustar el ancho */
             padding: 10px;
@@ -73,9 +101,12 @@
             outline: none; /* Quitar el contorno al enfocar */
             transition: border-color 0.3s ease; /* Transición suave */
         }
+
         #username:focus, #message:focus {
             border-color: #0056b3; /* Cambia el borde al enfocar */
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Sombra en enfoque */
         }
+
         #send-btn {
             display: flex;
             align-items: center;
@@ -85,33 +116,27 @@
             border: none;
             border-radius: 20px; /* Bordes redondeados */
             cursor: pointer;
-            transition: transform 0.2s, background-color 0.3s;
             position: relative;
             overflow: hidden; /* Para la animación del botón */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra del botón */
+            transition: all 0.3s ease; /* Transiciones suaves */
         }
+
         #send-btn:hover {
             background-color: #0056b3; /* Botón azul más oscuro */
+            transform: translateY(-2px); /* Efecto de elevación */
         }
-        /* Animación del botón */
+
         #send-btn:active {
-            animation: buttonBounce 0.4s ease; /* Animación de rebote */
+            transform: translateY(0); /* Volver a la posición normal */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Reducir sombra al presionar */
         }
-        @keyframes buttonBounce {
-            0% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.1);
-            }
-            100% {
-                transform: scale(1);
-            }
-        }
+
         /* Estilos para el check */
         #check {
             position: absolute;
-            top: 20px;
-            right: 20px;
+            top: 10px;
+            right: 10px;
             font-size: 24px;
             color: green;
             opacity: 0;
@@ -119,13 +144,20 @@
             transition: transform 0.3s ease, opacity 0.3s ease;
             z-index: 10; /* Asegurarse que esté en la parte superior */
         }
+
         .check-animate {
             opacity: 1;
             transform: scale(1);
         }
+
         .check-remove {
             opacity: 0;
             transform: scale(0);
+        }
+
+        /* Estilo adicional para un efecto suave de eliminación */
+        .disappear {
+            transition: transform 0.5s ease, opacity 0.5s ease; /* Suavizar la eliminación */
         }
     </style>
 </head>
@@ -138,7 +170,7 @@
     <input type="text" id="message" placeholder="Escribe tu mensaje..." />
     <button id="send-btn"><i class="fas fa-paper-plane"></i> Enviar</button>
 </div>
-<div id="check">✔️</div> <!-- Elemento de check -->
+<div id="check">✅</div> <!-- Elemento de check como emoji -->
 
 <script>
     const chatContainer = document.getElementById('chat-container');
@@ -196,23 +228,28 @@
         });
     }
 
-    function appendMessage(messageData) {
+    function appendMessage({ username, message }) {
         const messageDiv = document.createElement('div');
         messageDiv.classList.add('message');
-        messageDiv.style.borderColor = getRandomColor();
-
-        const usernameSpan = document.createElement('span');
-        usernameSpan.classList.add('username');
-        usernameSpan.textContent = messageData.username;
-
-        messageDiv.appendChild(usernameSpan);
-        messageDiv.appendChild(document.createTextNode(messageData.message));
+        messageDiv.style.borderColor = getRandomColor(); // Color aleatorio para el borde
+        messageDiv.innerHTML = `<span class="username">${username}</span>${message}`;
         chatContainer.appendChild(messageDiv);
-        chatContainer.scrollTop = chatContainer.scrollHeight; // Desplazar hacia abajo
 
-        // Añadir eventos para desaparecer al hacer clic
+        // Hacer que el mensaje se desplace hacia abajo
+        chatContainer.scrollTop = chatContainer.scrollHeight; // Desplazar hacia abajo automáticamente
+        setTimeout(() => {
+            messageDiv.style.opacity = 1; // Hacer visible el mensaje
+        }, 0); // Asegurarse de que se aplique la animación de entrada
         messageDiv.addEventListener('click', () => disappearMessage(messageDiv));
-        usernameSpan.addEventListener('click', () => disappearMessage(messageDiv));
+    }
+
+    function disappearMessage(messageDiv) {
+        messageDiv.classList.add('disappear'); // Añadir clase para desaparecer
+        messageDiv.style.transform = 'translateY(-20px)'; // Desplazar hacia arriba
+        messageDiv.style.opacity = '0'; // Desvanecer
+        setTimeout(() => {
+            messageDiv.remove(); // Eliminar después de la animación
+        }, 500); // Esperar el tiempo de la animación
     }
 
     function getRandomColor() {
@@ -225,29 +262,20 @@
     }
 
     function showCheck() {
-        check.classList.add('check-animate'); // Añadir clase para mostrar
+        check.classList.add('check-animate'); // Agregar clase para mostrar
         setTimeout(() => {
-            check.classList.remove('check-animate'); // Quitar la clase
-            check.classList.add('check-remove'); // Añadir clase para ocultar
+            check.classList.remove('check-animate');
+            check.classList.add('check-remove'); // Agregar clase para ocultar
             setTimeout(() => {
-                check.classList.remove('check-remove'); // Quitar clase de ocultar
-            }, 300); // Tiempo para esperar antes de quitar la clase de ocultar
-        }, 2000); // Tiempo para mantener el check visible
+                check.classList.remove('check-remove'); // Limpiar clase de ocultar
+            }, 300); // Esperar a que la animación de eliminación termine
+        }, 2000); // Mantener el check visible por 2 segundos
     }
 
     function animateSendButton() {
-        sendButton.innerHTML = '✔️'; // Cambiar texto a check
-        sendButton.style.backgroundColor = 'green'; // Cambiar a verde
+        sendButton.style.transform = 'scale(0.9)'; // Reduce el tamaño del botón
         setTimeout(() => {
-            sendButton.innerHTML = '<i class="fas fa-paper-plane"></i> Enviar'; // Volver al texto original
-            sendButton.style.backgroundColor = '#007BFF'; // Volver al color original
-        }, 2000);
-    }
-
-    function disappearMessage(messageDiv) {
-        messageDiv.style.transform = 'translateY(-20px)'; // Mover hacia arriba
-        setTimeout(() => {
-            messageDiv.style.opacity = '0'; // Hacer el mensaje invisible
+            sendButton.style.transform = 'scale(1.0)'; // Vuelve a su tamaño original
         }, 200); // Esperar a que se complete la animación
     }
 
