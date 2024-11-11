@@ -105,6 +105,24 @@
             font-size: 1.5rem;
         }
 
+        .back-button {
+            background-color: #007bff; 
+            color: white; 
+            border: none; 
+            border-radius: 5px; 
+            padding: 10px 15px; 
+            font-size: 16px; 
+            cursor: pointer; 
+            display: flex;
+            align-items: center;
+        }
+        .back-button:hover {
+            background-color: #0056b3; 
+        }
+        .icon {
+            margin-right: 5px; 
+        }
+
         /* Estilo para el footer */
         footer {
             position: fixed;
@@ -154,6 +172,10 @@
             }, 300); // Esperamos que termine la animación antes de redirigir
         }
     </script>
+
+     <button class="back-button" onclick="window.location.href='https://mcstellarproduction.github.io/7-3_siteweb/';">
+        <span class="icon">&#8592;</span> Back
+     </button>
 
 </body>
 </html>
