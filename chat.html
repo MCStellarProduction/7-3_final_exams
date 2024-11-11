@@ -77,10 +77,27 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, transform 0.2s;
+            position: relative;
         }
         #send-btn:hover {
             background-color: #0056b3; /* Botón azul más oscuro */
+        }
+        /* Animación del botón */
+        #send-btn:active {
+            transform: scale(0.95) rotate(3deg);
+            animation: bounce 0.3s forwards;
+        }
+        @keyframes bounce {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
         }
         /* Estilos para el check */
         #check {
@@ -226,15 +243,9 @@
         // Animar el texto para que desaparezca
         messageText.style.transition = 'transform 0.5s ease';
         messageText.style.transform = 'translateY(-20px)'; // Mover hacia arriba
-
-        // Luego, después de la animación, eliminar el mensaje
         setTimeout(() => {
-            messageDiv.style.transition = 'transform 0.5s ease';
-            messageDiv.style.transform = 'translateY(20px)'; // Mover hacia abajo
-            setTimeout(() => {
-                messageDiv.remove(); // Eliminar el mensaje del DOM
-            }, 500); // Esperar a que la animación termine
-        }, 500); // Esperar a que el movimiento hacia arriba termine
+            messageDiv.style.opacity = '0'; // Hacer el mensaje invisible
+        }, 500); // Esperar a que se complete la animación
     }
 
     function clearMessages() {
