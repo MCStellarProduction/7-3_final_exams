@@ -59,26 +59,27 @@
         }
 
         /* Estilos de los botones */
-        .option {
-            display: flex;
+        .button {
+            line-height: 1;
+            text-decoration: none;
+            display: inline-flex;
+            border: none;
+            cursor: pointer;
             align-items: center;
-            justify-content: center;
-            background-color: #ffffff;
+            gap: 0.75rem;
             border-radius: 15px;
             width: 250px;
             height: 60px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            cursor: pointer;
-            transition: transform 0.3s ease, background-color 0.3s ease;
             font-size: 1.2rem;
-            color: #444;
             font-weight: bold;
             padding: 0 15px;
-            gap: 10px;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            color: #fff;
         }
 
         /* Efecto de hover en los botones */
-        .option:hover {
+        .button:hover {
             transform: scale(1.1);
         }
 
@@ -100,8 +101,9 @@
         }
 
         /* Iconos en los botones */
-        .option i {
+        .button i {
             font-size: 1.5rem;
+            color: #fff; /* Color de los iconos */
         }
 
         /* Estilo para el footer */
@@ -132,18 +134,18 @@
 
     <div class="container">
         <!-- Opciones con iconos -->
-        <div class="option examenes" onclick="redirectTo('https://mcstellarproduction.github.io/7-3_siteweb/exams_final_opccions1')">
+        <button class="button examenes" onclick="redirectTo('https://mcstellarproduction.github.io/7-3_siteweb/exams_final_opccions1')">
             <i class="fas fa-pencil-alt"></i> Examenes Finales
-        </div>
-        <div class="option lista" onclick="redirectTo('https://mcstellarproduction.github.io/7-3_siteweb/lista_del_grupo')">
+        </button>
+        <button class="button lista" onclick="redirectTo('https://mcstellarproduction.github.io/7-3_siteweb/lista_del_grupo')">
             <i class="fas fa-users"></i> Lista del Grupo
-        </div>
-        <div class="option anuncios" onclick="redirectTo('https://mcstellarproduction.github.io/7-3_siteweb/anuncios')">
+        </button>
+        <button class="button anuncios" onclick="redirectTo('https://mcstellarproduction.github.io/7-3_siteweb/anuncios')">
             <i class="fas fa-bullhorn"></i> Anuncios
-        </div>
-        <div class="option chat" onclick="redirectTo('https://mcstellarproduction.github.io/7-3_siteweb/chat')">
+        </button>
+        <button class="button chat" onclick="redirectTo('https://mcstellarproduction.github.io/7-3_siteweb/chat')">
             <i class="fas fa-comment-dots"></i> Chat
-        </div>
+        </button>
     </div>
 
     <footer>
@@ -157,7 +159,7 @@
         // Función para redireccionar con animación
         function redirectTo(url) {
             // Animación de salida (escala)
-            const options = document.querySelectorAll('.option');
+            const options = document.querySelectorAll('.button');
             options.forEach(option => {
                 option.classList.add('fade-out');
             });
