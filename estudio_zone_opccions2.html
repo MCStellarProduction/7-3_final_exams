@@ -74,80 +74,69 @@
             }
         }
 
-        /* Estilos de los botones */
-        .option {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #ffffff; /* Fondo blanco para los botones */
-            border-radius: 15px;
-            width: 100%; /* Botones ocupan el 100% del ancho */
-            height: 60px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        /* Estilos del botón */
+        .button {
+            line-height: 1;
+            text-decoration: none;
+            display: inline-flex;
+            border: none;
             cursor: pointer;
-            transition: transform 0.3s ease, background-color 0.3s ease;
+            align-items: center;
+            gap: 0.75rem;
+            background-color: var(--clr);
+            color: #fff;
+            border-radius: 10rem;
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            transition: background-color 0.3s;
+            width: 100%;
+            height: 60px;
             font-size: 1.2rem;
-            color: #333; /* Color de texto */
-            font-weight: bold;
-            padding: 0 15px;
-            gap: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
-        /* Efecto de hover en los botones */
-        .option:hover {
-            transform: scale(1.05);
-        }
-
-        /* Colores específicos para cada opción */
-        .matematicas {
-            background-color: #81c784; /* Verde */
-        }
-
-        .ciencias {
-            background-color: #64b5f6; /* Azul */
-        }
-
-        .estudios-sociales {
-            background-color: #ffb74d; /* Naranja */
-        }
-
-        .espanol {
-            background-color: #ba68c8; /* Morado */
-        }
-
-        .ingles {
-            background-color: #ffd54f; /* Amarillo */
-        }
-
-        .frances {
-            background-color: #ff8a65; /* Rojo */
+        .button:hover {
+            background-color: #000;
         }
 
         /* Iconos en los botones */
-        .option i {
-            font-size: 1.5rem;
+        .button__icon-wrapper {
+            flex-shrink: 0;
+            width: 25px;
+            height: 25px;
+            position: relative;
+            color: var(--clr);
+            background-color: #fff;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            overflow: hidden;
         }
 
-        /* Ajuste de color de iconos para que sean más claros que el fondo del botón */
-        .matematicas i { color: #A5D6A7; } /* Verde más claro */
-        .ciencias i { color: #90CAF9; } /* Azul más claro */
-        .estudios-sociales i { color: #FFE0B2; } /* Naranja más claro */
-        .espanol i { color: #D1C4E9; } /* Morado más claro */
-        .ingles i { color: #FFF59D; } /* Amarillo más claro */
-        .frances i { color: #FFAB91; } /* Rojo más claro */
+        /* Colores específicos para cada opción */
+        .matematicas { --clr: #81c784; } /* Verde */
+        .ciencias { --clr: #64b5f6; } /* Azul */
+        .estudios-sociales { --clr: #ffb74d; } /* Naranja */
+        .espanol { --clr: #ba68c8; } /* Morado */
+        .ingles { --clr: #ffd54f; } /* Amarillo */
+        .frances { --clr: #ff8a65; } /* Rojo */
 
         .back-button {
             background-color: #007bff; /* Azul */
             color: white; 
             border: none; 
-            border-radius: 5px; 
-            padding: 10px 15px; 
+            border-radius: 10rem; 
+            padding: 0.75rem 1.5rem; 
             font-size: 16px; 
             cursor: pointer; 
             display: flex;
             align-items: center;
             margin-top: 20px; /* Espacio entre los botones y el botón de retroceso */
-            transition: background-color 0.3s ease, transform 0.3s ease;
+            transition: background-color 0.3s, transform 0.3s;
+            white-space: nowrap;
         }
 
         .back-button:hover {
@@ -181,23 +170,41 @@
 
     <div class="container">
         <!-- Opciones con iconos para las materias -->
-        <div class="option matematicas" onclick="redirectTo('https://mcstellarproduction.github.io/7-3_siteweb/e-matematicas')">
-            <i class="fas fa-signal"></i> Matemáticas
+        <div class="button matematicas" onclick="redirectTo('https://mcstellarproduction.github.io/7-3_siteweb/e-matematicas')">
+            <span class="button__icon-wrapper">
+                <i class="fas fa-signal"></i>
+            </span>
+            Matemáticas
         </div>
-        <div class="option ciencias" onclick="redirectTo('https://mcstellarproduction.github.io/7-3_siteweb/e-ciencias')">
-            <i class="fas fa-flask"></i> Ciencias
+        <div class="button ciencias" onclick="redirectTo('https://mcstellarproduction.github.io/7-3_siteweb/e-ciencias')">
+            <span class="button__icon-wrapper">
+                <i class="fas fa-flask"></i>
+            </span>
+            Ciencias
         </div>
-        <div class="option estudios-sociales" onclick="redirectTo('https://mcstellarproduction.github.io/7-3_siteweb/e-estudios_sociales')">
-            <i class="fas fa-globe-americas"></i> Estudios Sociales
+        <div class="button estudios-sociales" onclick="redirectTo('https://mcstellarproduction.github.io/7-3_siteweb/e-estudios_sociales')">
+            <span class="button__icon-wrapper">
+                <i class="fas fa-globe-americas"></i>
+            </span>
+            Estudios Sociales
         </div>
-        <div class="option espanol" onclick="redirectTo('https://mcstellarproduction.github.io/7-3_siteweb/e-espanol')">
-            <i class="fas fa-book-open"></i> Español
+        <div class="button espanol" onclick="redirectTo('https://mcstellarproduction.github.io/7-3_siteweb/e-espanol')">
+            <span class="button__icon-wrapper">
+                <i class="fas fa-book-open"></i>
+            </span>
+            Español
         </div>
-        <div class="option ingles" onclick="redirectTo('https://mcstellarproduction.github.io/7-3_siteweb/e-ingles')">
-            <i class="fas fa-language"></i> Inglés
+        <div class="button ingles" onclick="redirectTo('https://mcstellarproduction.github.io/7-3_siteweb/e-ingles')">
+            <span class="button__icon-wrapper">
+                <i class="fas fa-language"></i>
+            </span>
+            Inglés
         </div>
-        <div class="option frances" onclick="redirectTo('https://mcstellarproduction.github.io/7-3_siteweb/e-frances')">
-            <i class="fas fa-comment-dots"></i> Francés
+        <div class="button frances" onclick="redirectTo('https://mcstellarproduction.github.io/7-3_siteweb/e-frances')">
+            <span class="button__icon-wrapper">
+                <i class="fas fa-comment-dots"></i>
+            </span>
+            Francés
         </div>
     </div>
 
@@ -216,7 +223,7 @@
         // Función para redireccionar con animación
         function redirectTo(url) {
             // Animación de salida (escala)
-            const options = document.querySelectorAll('.option');
+            const options = document.querySelectorAll('.button');
             options.forEach(option => {
                 option.style.transform = 'scale(0)';
             });
