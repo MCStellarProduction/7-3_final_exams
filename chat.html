@@ -143,7 +143,7 @@
 </head>
 <body>
 
-<h1> <i class="fas fa-chat"></i> Chat 7-3</h1>
+<h1> <i class="fas fa-comment"></i> Chat 7-3</h1>
 <div id="chat-container"></div>
 <div id="input-container">
     <input type="text" id="username" placeholder="Nombre" />
@@ -211,7 +211,7 @@
     function appendMessage({ username, message }) {
         const messageDiv = document.createElement('div');
         messageDiv.classList.add('message');
-        messageDiv.innerHTML = `<i class="fas fa-users"></i><span class="username">${username}</span>: ${message}`;
+        messageDiv.innerHTML = `<i class="fas fa-user"></i> <span class="username">${username}</span>: ${message}`;
         chatContainer.appendChild(messageDiv);
 
         // Hacer que el mensaje se desplace hacia abajo
