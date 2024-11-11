@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego 2D Multijugador Simple</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #87CEEB; /* Fondo cielo */
+        }
+        #gameCanvas {
+            border: 1px solid black;
+            background-color: #228B22; /* Fondo del juego */
+        }
+        .controls {
+            margin-top: 10px;
+        }
+        .button {
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="gameCanvas" width="800" height="600"></canvas>
+    <div class="controls">
+        <button id="left" class="button">Izquierda</button>
+        <button id="right" class="button">Derecha</button>
+        <button id="jump" class="button">Saltar</button>
+    </div>
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+
+        // Definición de jugadores
+        const players = [
+            { x: 100, y: 500, width: 30, height: 30, color: 'blue', velocityY: 0, grounded: true, health: 100 },
+            { x: 400, y: 500, width: 30, height: 30, color: 'red', velocityY: 0, grounded: true, health: 100 }
+        ];
+
+        const gravity = 0.5;
+        const jumpPower = -10;
+        const friction = 0.9;
+
+        // Control de botones
+        document.getElementById('left').addEventListener('click', () => movePlayer(0, -1));
+        document.getElementById('right').addEventListener('click', () => movePlayer(0, 1));
+        document.getElementById('jump').addEventListener('click', () => jumpPlayer());
+
+        function movePlayer(playerIndex, direction) {
+            const player = players[playerIndex];
+            player.x += direction * 5; // Mover a la izquierda o derecha
+            handleCollision(player);
+        }
+
+        function jumpPlayer() {
+            players.forEach(player => {
+                if (player.grounded) {
+                    player.velocityY = jumpPower;
+                    player.grounded = false;
+                }
+            });
+        }
+
+        function handleCollision(player) {
+            // Colisiones simples con los límites del canvas
+            if (player.x < 0) player.x = 0;
+            if (player.x + player.width > canvas.width) player.x = canvas.width - player.width;
+        }
+
+        function update() {
+            players.forEach(player => {
+                // Aplicar gravedad
+                player.velocityY += gravity;
+                player.y += player.velocityY;
+
+                // Colisión con el suelo
+                if (player.y + player.height >= canvas.height) {
+                    player.y = canvas.height - player.height;
+                    player.velocityY = 0;
+                    player.grounded = true;
+                }
+
+                // Dibujar jugador
+                ctx.fillStyle = player.color;
+                ctx.fillRect(player.x, player.y, player.width, player.height);
+            });
+        }
+
+        function gameLoop() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height); // Limpiar canvas
+            update();
+            requestAnimationFrame(gameLoop); // Llamar de nuevo a gameLoop
+        }
+
+        gameLoop(); // Iniciar el bucle del juego
+    </script>
+</body>
+</html>
