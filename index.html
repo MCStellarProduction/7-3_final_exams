@@ -58,7 +58,7 @@
             animation: fadeIn 1s forwards; /* Animación de entrada */
         }
 
-        /* Estilos de los botones */
+        /* Estilos del botón */
         .button {
             line-height: 1;
             text-decoration: none;
@@ -67,43 +67,53 @@
             cursor: pointer;
             align-items: center;
             gap: 0.75rem;
-            border-radius: 15px;
-            width: 250px;
-            height: 60px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            font-size: 1.2rem;
-            font-weight: bold;
-            padding: 0 15px;
-            transition: transform 0.3s ease, background-color 0.3s ease;
+            background-color: var(--clr);
             color: #fff;
+            border-radius: 10rem;
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            padding-left: 20px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            transition: background-color 0.3s, transform 0.3s;
         }
 
         /* Efecto de hover en los botones */
         .button:hover {
-            transform: scale(1.1);
-        }
-
-        /* Colores específicos para cada opción */
-        .examenes {
-            background-color: #81c784; /* Verde */
-        }
-
-        .lista {
-            background-color: #64b5f6; /* Azul */
-        }
-
-        .anuncios {
-            background-color: #ffb74d; /* Naranja */
-        }
-
-        .chat {
-            background-color: #86beda; /* Azul Claro */
+            background-color: #000;
+            transform: scale(1.05);
         }
 
         /* Iconos en los botones */
-        .button i {
-            font-size: 1.5rem;
-            color: #fff; /* Color de los iconos */
+        .button__icon-wrapper {
+            flex-shrink: 0;
+            width: 25px;
+            height: 25px;
+            position: relative;
+            color: var(--clr);
+            background-color: #fff;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            overflow: hidden;
+        }
+
+        /* Estilo para los colores específicos de los botones */
+        .examenes {
+            --clr: #81c784; /* Verde */
+        }
+
+        .lista {
+            --clr: #64b5f6; /* Azul */
+        }
+
+        .anuncios {
+            --clr: #ffb74d; /* Naranja */
+        }
+
+        .chat {
+            --clr: #86beda; /* Azul Claro */
         }
 
         /* Estilo para el footer */
@@ -135,16 +145,28 @@
     <div class="container">
         <!-- Opciones con iconos -->
         <button class="button examenes" onclick="redirectTo('https://mcstellarproduction.github.io/7-3_siteweb/exams_final_opccions1')">
-            <i class="fas fa-pencil-alt"></i> Examenes Finales
+            <span class="button__icon-wrapper">
+                <i class="fas fa-pencil-alt"></i>
+            </span>
+            Examenes Finales
         </button>
         <button class="button lista" onclick="redirectTo('https://mcstellarproduction.github.io/7-3_siteweb/lista_del_grupo')">
-            <i class="fas fa-users"></i> Lista del Grupo
+            <span class="button__icon-wrapper">
+                <i class="fas fa-users"></i>
+            </span>
+            Lista del Grupo
         </button>
         <button class="button anuncios" onclick="redirectTo('https://mcstellarproduction.github.io/7-3_siteweb/anuncios')">
-            <i class="fas fa-bullhorn"></i> Anuncios
+            <span class="button__icon-wrapper">
+                <i class="fas fa-bullhorn"></i>
+            </span>
+            Anuncios
         </button>
         <button class="button chat" onclick="redirectTo('https://mcstellarproduction.github.io/7-3_siteweb/chat')">
-            <i class="fas fa-comment-dots"></i> Chat
+            <span class="button__icon-wrapper">
+                <i class="fas fa-comment-dots"></i>
+            </span>
+            Chat
         </button>
     </div>
 
