@@ -3,92 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Temporizador</title>
+    <title>Temporizador Escolar</title>
     <style>
         body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-color: #f0f0f0;
-            font-family: Arial, sans-serif;
+        }
+        .container {
+            text-align: center;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
         }
         .timer {
-            font-size: 48px;
-            color: #333;
-            text-align: center;
+            font-size: 36px;
+            color: #d9534f;
+            font-weight: bold;
         }
-        .number {
-            transition: transform 0.3s ease-in-out;
-        }
-        .fade-in {
-            transform: scale(1.2);
-            opacity: 1;
-        }
-        .fade-out {
-            transform: scale(0.8);
-            opacity: 0;
+        .footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #777;
         }
     </style>
 </head>
 <body>
-
-    <div class="timer" id="timer">
-        <span class="number" id="days">00</span> días 
-        <span class="number" id="hours">00</span> horas 
-        <span class="number" id="minutes">00</span> minutos 
-        <span class="number" id="seconds">00</span> segundos
+    <div class="container">
+        <h1>Tiempo Restante:</h1>
+        <div id="countdown" class="timer">00:00:00</div>
+        <div class="footer">¡Buena suerte!</div>
     </div>
 
     <script>
-        // Fecha objetivo
-        const countDownDate = new Date("November 10, 2024 19:00:00").getTime();
-        const redirectUrl = "https://www.ejemplo.com"; // URL de redirección
+        // Configuración de la fecha y hora de finalización
+        const endDate = new Date("November 10, 2024 20:00:00").getTime();
 
-        // Actualizar el temporizador cada segundo
-        const interval = setInterval(function() {
+        // Actualización del temporizador cada segundo
+        const x = setInterval(function() {
             const now = new Date().getTime();
-            const distance = countDownDate - now;
+            const distance = endDate - now;
 
-            // Calcular el tiempo restante
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            // Cálculo del tiempo restante en horas, minutos y segundos
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            // Actualizar los elementos del temporizador
-            updateTimer("days", days);
-            updateTimer("hours", hours);
-            updateTimer("minutes", minutes);
-            updateTimer("seconds", seconds);
+            // Mostrar el temporizador
+            document.getElementById("countdown").innerHTML = 
+                (hours < 10 ? "0" : "") + hours + ":" + 
+                (minutes < 10 ? "0" : "") + minutes + ":" + 
+                (seconds < 10 ? "0" : "") + seconds;
 
-            // Si el temporizador termina, redirigir
+            // Si el tiempo ha terminado, redirigir a un enlace personalizado
             if (distance < 0) {
-                clearInterval(interval);
-                window.location.href = redirectUrl; // Redirigir a la URL especificada
+                clearInterval(x);
+                // Cambia el siguiente enlace al que desees redirigir
+                window.location.href = "https://www.ejemplo.com";
             }
         }, 1000);
-
-        function updateTimer(id, value) {
-            const element = document.getElementById(id);
-            const oldValue = element.textContent;
-
-            element.textContent = String(value).padStart(2, '0'); // Asegura que tenga 2 dígitos
-
-            if (oldValue !== element.textContent) {
-                // Añadir animación
-                element.classList.remove('fade-in');
-                element.classList.add('fade-out');
-                
-                // Esperar a que termine la animación para cambiar de clase
-                setTimeout(() => {
-                    element.classList.remove('fade-out');
-                    element.classList.add('fade-in');
-                }, 300); // Tiempo de la animación
-            }
-        }
     </script>
-
 </body>
 </html>
