@@ -284,8 +284,7 @@
         const messageDiv = document.createElement('div');
         messageDiv.classList.add('message');
         messageDiv.innerHTML = `
-            <div>${username}: ${message}</div> 
-            <span class="username">${username}</span>
+            <i class="fas fa-user"></i><span class="username"> ${username}</span>: ${message}</div> 
         `;
         chatContainer.appendChild(messageDiv);
 
