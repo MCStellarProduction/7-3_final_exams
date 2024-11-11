@@ -243,6 +243,7 @@
             display: flex;
             align-items: center;
             margin: 10px;
+            /* Mantener el botón siempre visible */
         }
         .back-button:hover {
             background-color: #0056b3; 
@@ -268,10 +269,9 @@
         <label for="file">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 337 337">
                 <circle stroke-width="20" stroke="#6c6c6c" fill="none" r="158.5" cy="168.5" cx="168.5"></circle>
-                <path stroke-linecap="round" stroke-width="25" stroke="#6c6c6c" d="M167.759 79V259"></path>
-                <path stroke-linecap="round" stroke-width="25" stroke="#6c6c6c" d="M79 167.138H259"></path>
+                <path stroke-linecap="round" stroke-width="20" stroke="#6c6c6c" d="M253 169.5H118.5l64.5-64.5"></path>
+                <span class="tooltip">Adjuntar Archivo</span>
             </svg>
-            <span class="tooltip">Agregar una imagen</span>
         </label>
         <input type="file" id="file" name="file" />
     </div>
@@ -285,11 +285,17 @@
     </button>
 </div>
 
+<!-- Botón de regreso -->
+<button class="back-button" id="backButton">
+    <i class="icon fas fa-arrow-left"></i> Regresar
+</button>
+
 <script>
     const chatContainer = document.getElementById('chat-container');
     const messageInput = document.getElementById('messageInput');
     const sendButton = document.getElementById('sendButton');
     const usernameInput = document.getElementById('usernameInput');
+    const backButton = document.getElementById('backButton');
 
     sendButton.addEventListener('click', () => {
         const currentUsername = usernameInput.value.trim();
@@ -297,6 +303,11 @@
 
         if (!currentUsername) {
             alert('Por favor, introduce tu nombre de usuario antes de enviar un mensaje.');
+            return;
+        }
+
+        if (message === '/clear') {
+            clearMessages();
             return;
         }
 
@@ -361,6 +372,11 @@
         localStorage.removeItem('chatMessages'); // Limpiar los mensajes del localStorage
         chatContainer.innerHTML = ''; // Limpiar el chat visualmente
     }
+
+    backButton.addEventListener('click', () => {
+        // Aquí puedes agregar lógica para regresar a otra vista si es necesario
+        alert("Regresando a la vista anterior...");
+    });
 
     // Cargar mensajes al inicio
     loadMessages();
