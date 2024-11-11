@@ -147,11 +147,12 @@
             display: flex;
             align-items: center;
             margin-top: 20px; /* Espacio entre los botones y el botón de retroceso */
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, transform 0.3s ease;
         }
 
         .back-button:hover {
             background-color: #0056b3; /* Azul oscuro al pasar el mouse */
+            transform: scale(1.05); /* Aumenta el tamaño al hacer hover */
         }
 
         .icon {
