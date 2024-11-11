@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grupo 7-3 • Chat Educativo</title>
+    <title>Chat Educativo con Animaciones</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -40,6 +41,7 @@
             transition: transform 0.2s ease;
             opacity: 0;
             animation: fadeIn 0.5s forwards;
+            cursor: pointer; /* Cambia el cursor al pasar sobre el mensaje */
         }
         @keyframes fadeIn {
             to {
@@ -67,6 +69,8 @@
             font-size: 16px;
         }
         #send-btn {
+            display: flex;
+            align-items: center;
             padding: 10px 20px;
             background-color: #007BFF; /* Botón azul */
             color: white;
@@ -88,6 +92,7 @@
             opacity: 0;
             transform: scale(0);
             transition: transform 0.3s ease, opacity 0.3s ease;
+            z-index: 10; /* Asegurarse que esté en la parte superior */
         }
         .check-animate {
             opacity: 1;
@@ -106,7 +111,7 @@
 <div id="input-container">
     <input type="text" id="username" placeholder="Username" />
     <input type="text" id="message" placeholder="Escribe tu mensaje..." />
-    <button id="send-btn">Enviar</button>
+    <button id="send-btn"><i class="fas fa-paper-plane"></i> Enviar</button>
 </div>
 <div id="check">✔️</div> <!-- Elemento de check -->
 
@@ -127,6 +132,12 @@
         const message = messageInput.value.trim();
         
         if (username && message) {
+            // Comando para limpiar mensajes
+            if (message.toLowerCase() === '/clear') {
+                clearMessages();
+                return;
+            }
+
             const messageData = {
                 username: username,
                 message: message,
@@ -135,6 +146,7 @@
             saveMessage(messageData);
             appendMessage(messageData);
             showCheck(); // Mostrar check
+            animateSendButton(); // Animar botón
             messageInput.value = ''; // Limpiar el campo de mensaje
         } else {
             alert('Por favor, introduce un nombre de usuario y un mensaje.');
@@ -172,6 +184,10 @@
         messageDiv.appendChild(document.createTextNode(messageData.message));
         chatContainer.appendChild(messageDiv);
         chatContainer.scrollTop = chatContainer.scrollHeight; // Desplazar hacia abajo
+
+        // Añadir eventos para desaparecer al hacer clic
+        messageDiv.addEventListener('click', () => disappearMessage(messageDiv));
+        usernameSpan.addEventListener('click', () => disappearMessage(messageDiv));
     }
 
     function getRandomColor() {
@@ -192,6 +208,38 @@
                 check.classList.remove('check-remove'); // Quitar clase de ocultar
             }, 300); // Tiempo para esperar antes de quitar la clase de ocultar
         }, 2000); // Tiempo para mantener el check visible
+    }
+
+    function animateSendButton() {
+        sendButton.innerHTML = '✔️'; // Cambiar texto a check
+        sendButton.style.backgroundColor = 'green'; // Cambiar a verde
+        setTimeout(() => {
+            sendButton.innerHTML = '<i class="fas fa-paper-plane"></i> Enviar'; // Regresar a avión de papel
+            sendButton.style.backgroundColor = '#007BFF'; // Regresar a azul
+        }, 2000); // Regresar después de 2 segundos
+    }
+
+    function disappearMessage(messageDiv) {
+        const messageText = messageDiv.childNodes[1]; // Obtener el texto del mensaje
+        const text = messageText.textContent; // Guardar el texto original
+
+        // Animar el texto para que desaparezca
+        messageText.style.transition = 'transform 0.5s ease';
+        messageText.style.transform = 'translateY(-20px)'; // Mover hacia arriba
+
+        // Luego, después de la animación, eliminar el mensaje
+        setTimeout(() => {
+            messageDiv.style.transition = 'transform 0.5s ease';
+            messageDiv.style.transform = 'translateY(20px)'; // Mover hacia abajo
+            setTimeout(() => {
+                messageDiv.remove(); // Eliminar el mensaje del DOM
+            }, 500); // Esperar a que la animación termine
+        }, 500); // Esperar a que el movimiento hacia arriba termine
+    }
+
+    function clearMessages() {
+        localStorage.removeItem('chatMessages'); // Limpiar los mensajes del localStorage
+        chatContainer.innerHTML = ''; // Limpiar el chat visualmente
     }
 </script>
 
