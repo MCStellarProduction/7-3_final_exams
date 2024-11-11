@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Grupo 7-3 • Eximidos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         /* Reset de márgenes y paddings */
         * {
@@ -56,6 +57,7 @@
             cursor: pointer; 
             display: flex;
             align-items: center;
+            margin-top: 20px; /* Espacio entre el cuadro y el botón de retroceso */
         }
         .back-button:hover {
             background-color: #0056b3; 
@@ -86,6 +88,8 @@
             margin-top: 20px;
             font-size: 1.2rem;
             color: #333;
+            display: flex; /* Cambiado para alinear el ícono y el texto */
+            align-items: center; /* Centrado verticalmente */
         }
 
         .students {
@@ -100,7 +104,6 @@
             text-align: center;
             font-size: 1rem;
             color: #555;
-            display: none;
         }
 
         footer a {
@@ -117,48 +120,58 @@
     <div class="eximidos-box">
         <h2>EXIMIDOS</h2>
 
-        <div class="subject">Español:</div>
+        <div class="subject">
+            <i class="fas fa-book"></i> Español:
+        </div>
         <div class="students">
-            - Mauricio Solis Canales<br>
-            - Raylim Avila Hidalgo
+            <i class="fas fa-user"></i> Mauricio Solis Canales<br>
+            <i class="fas fa-user"></i> Raylim Avila Hidalgo
         </div>
 
-        <div class="subject">Estudios Sociales:</div>
+        <div class="subject">
+            <i class="fas fa-globe"></i> Estudios Sociales:
+        </div>
         <div class="students">
-            - Julian Muñoz<br>
-            - Hilary Morales Rojas
+            <i class="fas fa-user"></i> Julian Muñoz<br>
+            <i class="fas fa-user"></i> Hilary Morales Rojas
         </div>
 
-        <div class="subject">Inglés:</div>
+        <div class="subject">
+            <i class="fas fa-language"></i> Inglés:
+        </div>
         <div class="students">
-            - Julian Muñoz<br>
-            - Briana Castillo<br>
-            - Audrey Suarez<br>
-            - Fabiana Naranjo<br>
-            - Karina Perez Campos<br>
-            - Hilary Morales Rojas<br>
-            - Santiago Oraves Piedra<br>
-            - Eidan Vargas Duran<br>
-            - Luis Andres Zamora Aguilar
+            <i class="fas fa-user"></i> Julian Muñoz<br>
+            <i class="fas fa-user"></i> Briana Castillo<br>
+            <i class="fas fa-user"></i> Audrey Suarez<br>
+            <i class="fas fa-user"></i> Fabiana Naranjo<br>
+            <i class="fas fa-user"></i> Karina Perez Campos<br>
+            <i class="fas fa-user"></i> Hilary Morales Rojas<br>
+            <i class="fas fa-user"></i> Santiago Oraves Piedra<br>
+            <i class="fas fa-user"></i> Eidan Vargas Duran<br>
+            <i class="fas fa-user"></i> Luis Andres Zamora Aguilar
         </div>
 
-        <div class="subject">Ciencias:</div>
+        <div class="subject">
+            <i class="fas fa-flask"></i> Ciencias:
+        </div>
         <div class="students">
-            - Caleb Calvo Chacon<br>
-            - Julian Muñoz
+            <i class="fas fa-user"></i> Caleb Calvo Chacon<br>
+            <i class="fas fa-user"></i> Julian Muñoz
         </div>
 
-        <div class="subject">Matemáticas:</div>
+        <div class="subject">
+            <i class="fas fa-chart-bar"></i> Matemáticas:
+        </div>
         <div class="students">
-            - Audrey Suarez<br>
-            - Julian Muñoz<br>
-            - Rashid Gonzales Hidalgo
+            <i class="fas fa-user"></i> Audrey Suarez<br>
+            <i class="fas fa-user"></i> Julian Muñoz<br>
+            <i class="fas fa-user"></i> Rashid Gonzales Hidalgo
         </div>
     </div>
 
-     <button class="back-button" onclick="window.location.href='https://mcstellarproduction.github.io/7-3_siteweb/exams_final_opccions1';">
-        <span class="icon">&#8592;</span> Back
-     </button>
+    <button class="back-button" onclick="window.location.href='https://mcstellarproduction.github.io/7-3_siteweb/exams_final_opccions1';">
+        <span class="icon">&#8592;</span> Volver
+    </button>
 
     <footer>
         Página Creada por: <a href="https://www.instagram.com/redaguilar218/" target="_blank">Luis Andres Zamora Aguilar</a>
@@ -166,4 +179,3 @@
 
 </body>
 </html>
-
