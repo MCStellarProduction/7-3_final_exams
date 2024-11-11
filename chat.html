@@ -212,7 +212,7 @@
         </label>
         <input type="file" id="file" name="file" />
     </div>
-    <input required placeholder="Message..." type="text" id="messageInput" />
+    <input required placeholder="Escribe un mensaje..." type="text" id="messageInput" />
     <button id="sendButton">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 664 663">
             <path fill="none" d="M646.293 331.888L17.7538 17.6187L155.245 331.888M646.293 331.888L17.753 646.157L155.245 331.888M646.293 331.888L318.735 330.228L155.245 331.888"></path>
@@ -226,15 +226,17 @@
     const messageInput = document.getElementById('messageInput');
     const sendButton = document.getElementById('sendButton');
     const currentUsernameDisplay = document.getElementById('currentUsername');
+    
+    let currentUsername = ""; // Almacenar el nombre de usuario
 
     sendButton.addEventListener('click', () => {
-        const username = prompt('Introduce tu nombre:');
-        if (username) {
-            currentUsernameDisplay.textContent = username; // Mostrar el nombre de usuario
+        if (!currentUsername) {
+            currentUsername = prompt('Introduce tu nombre:');
+            currentUsernameDisplay.textContent = currentUsername; // Mostrar el nombre de usuario
         }
 
         const message = messageInput.value.trim();
-        if (username && message) {
+        if (currentUsername && message) {
             // Comando para limpiar mensajes
             if (message.toLowerCase() === '/clear') {
                 clearMessages();
@@ -242,7 +244,7 @@
             }
 
             const messageData = {
-                username: username,
+                username: currentUsername,
                 message: message,
                 timestamp: Date.now()
             };
@@ -250,7 +252,7 @@
             appendMessage(messageData);
             messageInput.value = ''; // Limpiar el campo de mensaje
         } else {
-            alert('Error: Informacion Incompleta. No has puesto Nombre o un Mensaje');
+            alert('Error: Información incompleta. No has puesto Nombre o un Mensaje');
         }
     });
 
@@ -276,7 +278,7 @@
         const messageDiv = document.createElement('div');
         messageDiv.classList.add('message');
         messageDiv.innerHTML = `
-            ${message} 
+            ${username}: ${message} 
             <span class="username">${username}</span>
         `;
         chatContainer.appendChild(messageDiv);
