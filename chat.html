@@ -55,24 +55,6 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra de los mensajes */
         }
 
-        .back-button {
-            background-color: #007bff; 
-            color: white; 
-            border: none; 
-            border-radius: 5px; 
-            padding: 10px 15px; 
-            font-size: 16px; 
-            cursor: pointer; 
-            display: flex;
-            align-items: center;
-        }
-        .back-button:hover {
-            background-color: #0056b3; 
-        }
-        .icon {
-            margin-right: 5px; 
-        }
-
         @keyframes fadeIn {
             0% { opacity: 0; }
             100% { opacity: 1; }
@@ -88,123 +70,120 @@
             font-size: 0.9em; /* Tamaño del texto del usuario */
         }
 
-        #input-container {
-            display: flex;
-            justify-content: space-between;
-            padding: 10px;
-            border-top: 1px solid #bdc3c7; /* Línea divisoria gris */
-            background-color: #ffffff; /* Fondo blanco */
-            width: 90%; /* Ancho ajustable */
-            max-width: 500px; /* Ancho máximo */
-            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1); /* Sombra superior */
-        }
-
-        .form__group {
-            position: relative;
-            padding: 20px 0 0;
-            width: 100%;
-            max-width: 220px; /* Ancho máximo ajustado */
-        }
-
-        .form__field {
-            font-family: inherit;
-            width: 100%;
-            border: none;
-            border-bottom: 2px solid #9b9b9b;
-            outline: 0;
-            font-size: 16px;
-            color: #000; /* Cambiado a negro para el texto */
-            padding: 7px 0;
-            background: transparent;
-            transition: border-color 0.2s;
-        }
-
-        .form__field::placeholder {
-            color: transparent;
-        }
-
-        .form__field:placeholder-shown ~ .form__label {
-            font-size: 16px;
-            cursor: text;
-            top: 20px;
-        }
-
-        .form__label {
-            position: absolute;
-            top: 0;
-            display: block;
-            transition: 0.2s;
-            font-size: 16px;
-            color: #9b9b9b;
-            pointer-events: none;
-        }
-
-        .form__field:focus {
-            padding-bottom: 6px;
-            font-weight: 700;
-            border-width: 3px;
-            border-image: linear-gradient(to right, #116399, #38caef);
-            border-image-slice: 1;
-        }
-
-        .form__field:focus ~ .form__label {
-            position: absolute;
-            top: 0;
-            display: block;
-            transition: 0.2s;
-            font-size: 16px;
-            color: #38caef;
-            font-weight: 700;
-        }
-
-        /* reset input */
-        .form__field:required, .form__field:invalid {
-            box-shadow: none;
-        }
-
-        #send-btn {
+        .messageBox {
+            width: fit-content;
+            height: 40px;
             display: flex;
             align-items: center;
-            padding: 10px 20px;
-            background-color: #2980b9; /* Botón azul */
-            color: white;
-            border: none;
-            border-radius: 25px; /* Bordes redondeados */
+            justify-content: center;
+            background-color: #2d2d2d;
+            padding: 0 15px;
+            border-radius: 10px;
+            border: 1px solid rgb(63, 63, 63);
+            margin-top: 10px; /* Añadir margen superior */
+        }
+        .messageBox:focus-within {
+            border: 1px solid rgb(110, 110, 110);
+        }
+
+        .fileUploadWrapper {
+            width: fit-content;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        #file {
+            display: none;
+        }
+
+        .fileUploadWrapper label {
             cursor: pointer;
+            width: fit-content;
+            height: fit-content;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             position: relative;
-            overflow: hidden; /* Para la animación del botón */
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra del botón */
-            transition: background-color 0.3s ease; /* Transiciones suaves */
         }
 
-        #send-btn:hover {
-            background-color: #1f618d; /* Botón azul más oscuro */
+        .fileUploadWrapper label svg {
+            height: 18px;
         }
 
-        #check {
+        .tooltip {
             position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 24px;
-            color: green;
+            top: -40px;
+            display: none;
             opacity: 0;
-            transform: scale(0);
-            transition: transform 0.3s ease, opacity 0.3s ease;
-            z-index: 10; /* Asegurarse que esté en la parte superior */
+            color: white;
+            font-size: 10px;
+            text-wrap: nowrap;
+            background-color: #000;
+            padding: 6px 10px;
+            border: 1px solid #3c3c3c;
+            border-radius: 5px;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.596);
+            transition: all 0.3s;
         }
 
-        .check-animate {
+        .fileUploadWrapper label:hover .tooltip {
+            display: block;
             opacity: 1;
-            transform: scale(1);
         }
 
-        .check-remove {
-            opacity: 0;
-            transform: scale(0);
+        #messageInput {
+            width: 200px;
+            height: 100%;
+            background-color: transparent;
+            outline: none;
+            border: none;
+            padding-left: 10px;
+            color: white;
         }
 
-        .disappear {
-            transition: transform 0.5s ease, opacity 0.5s ease; /* Suavizar la eliminación */
+        #sendButton {
+            width: fit-content;
+            height: 100%;
+            background-color: transparent;
+            outline: none;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        #sendButton svg {
+            height: 18px;
+            transition: all 0.3s;
+        }
+
+        #sendButton:hover svg path {
+            fill: #3c3c3c;
+            stroke: white;
+        }
+        
+        .back-button {
+            background-color: #007bff; 
+            color: white; 
+            border: none; 
+            border-radius: 5px; 
+            padding: 10px 15px; 
+            font-size: 16px; 
+            cursor: pointer; 
+            display: flex;
+            align-items: center;
+            margin: 10px;
+        }
+        .back-button:hover {
+            background-color: #0056b3; 
+        }
+        .icon {
+            margin-right: 5px; 
         }
     </style>
 </head>
@@ -212,28 +191,36 @@
 
 <h1> <i class="fas fa-comment"></i> Chat 7-3</h1>
 <div id="chat-container"></div>
-<div id="input-container">
-    <div class="form__group">
-        <input type="text" id="username" class="form__field" placeholder="Nombre" required>
-        <label for="username" class="form__label">Nombre</label>
+
+<div class="messageBox">
+    <div class="fileUploadWrapper">
+        <label for="file">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 337 337">
+                <circle stroke-width="20" stroke="#6c6c6c" fill="none" r="158.5" cy="168.5" cx="168.5"></circle>
+                <path stroke-linecap="round" stroke-width="25" stroke="#6c6c6c" d="M167.759 79V259"></path>
+                <path stroke-linecap="round" stroke-width="25" stroke="#6c6c6c" d="M79 167.138H259"></path>
+            </svg>
+            <span class="tooltip">Add an image</span>
+        </label>
+        <input type="file" id="file" name="file" />
     </div>
-    <div class="form__group">
-        <input type="text" id="message" class="form__field" placeholder="Mensaje" required>
-        <label for="message" class="form__label">Mensaje</label>
-    </div>
-    <button id="send-btn"><i class="fas fa-paper-plane"></i> Enviar</button>
+    <input required placeholder="Message..." type="text" id="messageInput" />
+    <button id="sendButton">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 664 663">
+            <path fill="none" d="M646.293 331.888L17.7538 17.6187L155.245 331.888M646.293 331.888L17.753 646.157L155.245 331.888M646.293 331.888L318.735 330.228L155.245 331.888"></path>
+            <path stroke-linejoin="round" stroke-linecap="round" stroke-width="33.67" stroke="#6c6c6c" d="M646.293 331.888L17.7538 17.6187L155.245 331.888M646.293 331.888L17.753 646.157L155.245 331.888M646.293 331.888L318.735 330.228L155.245 331.888"></path>
+        </svg>
+    </button>
 </div>
-<div id="check">✅</div> <!-- Elemento de check como emoji -->
-    
+
 <button class="back-button" onclick="window.location.href='https://mcstellarproduction.github.io/7-3_siteweb/';">
-        <span class="icon">&#8592;</span> Back
+    <span class="icon">&#8592;</span> Back
 </button>
 
 <script>
     const chatContainer = document.getElementById('chat-container');
-    const usernameInput = document.getElementById('username');
-    const messageInput = document.getElementById('message');
-    const sendButton = document.getElementById('send-btn');
+    const messageInput = document.getElementById('messageInput');
+    const sendButton = document.getElementById('sendButton');
     const check = document.getElementById('check');
 
     // Cargar mensajes guardados al cargar la página
@@ -242,9 +229,9 @@
     };
 
     sendButton.addEventListener('click', () => {
-        const username = usernameInput.value.trim();
+        const username = prompt('Introduce tu nombre:');
         const message = messageInput.value.trim();
-        
+
         if (username && message) {
             // Comando para limpiar mensajes
             if (message.toLowerCase() === '/clear') {
@@ -259,8 +246,6 @@
             };
             saveMessage(messageData);
             appendMessage(messageData);
-            showCheck(); // Mostrar check
-            animateSendButton(); // Animar botón
             messageInput.value = ''; // Limpiar el campo de mensaje
         } else {
             alert('Error: Informacion Incompleta. No has puesto Nombre o un Mensaje');
@@ -306,24 +291,6 @@
         setTimeout(() => {
             messageDiv.remove(); // Eliminar después de la animación
         }, 500); // Esperar el tiempo de la animación
-    }
-
-    function showCheck() {
-        check.classList.add('check-animate'); // Agregar clase para mostrar
-        setTimeout(() => {
-            check.classList.remove('check-animate');
-            check.classList.add('check-remove'); // Agregar clase para ocultar
-            setTimeout(() => {
-                check.classList.remove('check-remove'); // Limpiar clase de ocultar
-            }, 300); // Esperar a que la animación de eliminación termine
-        }, 2000); // Mantener el check visible por 2 segundos
-    }
-
-    function animateSendButton() {
-        sendButton.style.transform = 'scale(0.9)'; // Reduce el tamaño del botón
-        setTimeout(() => {
-            sendButton.style.transform = 'scale(1.0)'; // Vuelve a su tamaño original
-        }, 200); // Esperar a que se complete la animación
     }
 
     function clearMessages() {
