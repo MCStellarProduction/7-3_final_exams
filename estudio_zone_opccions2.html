@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Grupo 7-3 - Estudio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         /* Reset de márgenes y paddings */
         * {
@@ -15,7 +16,7 @@
 
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #f4f4f9;
+            background-color: #f4f4f9; /* Color de fondo claro */
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -29,9 +30,25 @@
         h1 {
             font-size: 3rem;
             margin-bottom: 20px;
-            color: #5c6bc0;
+            color: transparent;
+            background: linear-gradient(to right, #5C6BC0, #1E88E5, #039BE5); /* Gradiente de azules */
+            -webkit-background-clip: text; /* Clip para fondo en el texto */
+            background-clip: text; /* Clip para fondo en el texto */
             text-align: center;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); /* Sombra para darle profundidad */
+            animation: slideDown 1s ease-out forwards; /* Animación de entrada */
+        }
+
+        /* Animación para el título */
+        @keyframes slideDown {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
 
         /* Contenedor principal para los botones */
@@ -43,6 +60,8 @@
             gap: 20px;
             opacity: 0;
             animation: fadeIn 1s forwards; /* Animación de entrada */
+            max-width: 400px; /* Limitar el ancho del contenedor */
+            width: 100%;
         }
 
         /* Animación fadeIn */
@@ -60,15 +79,15 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: #ffffff;
+            background-color: #ffffff; /* Fondo blanco para los botones */
             border-radius: 15px;
-            width: 250px;
+            width: 100%; /* Botones ocupan el 100% del ancho */
             height: 60px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             cursor: pointer;
             transition: transform 0.3s ease, background-color 0.3s ease;
             font-size: 1.2rem;
-            color: #444;
+            color: #333; /* Color de texto */
             font-weight: bold;
             padding: 0 15px;
             gap: 10px;
@@ -76,7 +95,7 @@
 
         /* Efecto de hover en los botones */
         .option:hover {
-            transform: scale(1.1);
+            transform: scale(1.05);
         }
 
         /* Colores específicos para cada opción */
@@ -110,7 +129,7 @@
         }
 
         .back-button {
-            background-color: #007bff; 
+            background-color: #007bff; /* Azul */
             color: white; 
             border: none; 
             border-radius: 5px; 
@@ -119,12 +138,16 @@
             cursor: pointer; 
             display: flex;
             align-items: center;
+            margin-top: 20px; /* Espacio entre los botones y el botón de retroceso */
+            transition: background-color 0.3s ease;
         }
+
         .back-button:hover {
-            background-color: #0056b3; 
+            background-color: #0056b3; /* Azul oscuro al pasar el mouse */
         }
+
         .icon {
-            margin-right: 5px; 
+            margin-right: 5px; /* Espacio entre icono y texto */
         }
 
         /* Estilo para el footer */
@@ -134,12 +157,11 @@
             text-align: center;
             font-size: 1rem;
             color: #555;
-            display: none;
         }
 
         footer a {
             text-decoration: none;
-            color: #5c6bc0;
+            color: #5c6bc0; /* Color del enlace en el footer */
         }
 
     </style>
@@ -151,24 +173,28 @@
     <div class="container">
         <!-- Opciones con iconos para las materias -->
         <div class="option matematicas" onclick="redirectTo('https://mcstellarproduction.github.io/7-3_siteweb/e-matematicas')">
-            <i class="fas fa-signal"></i> Matemáticas
+            <i class="fas fa-signal" style="color: #4CAF50;"></i> Matemáticas
         </div>
         <div class="option ciencias" onclick="redirectTo('https://mcstellarproduction.github.io/7-3_siteweb/e-ciencias')">
-            <i class="fas fa-flask"></i> Ciencias
+            <i class="fas fa-flask" style="color: #64B5F6;"></i> Ciencias
         </div>
         <div class="option estudios-sociales" onclick="redirectTo('https://mcstellarproduction.github.io/7-3_siteweb/e-estudios_sociales')">
-            <i class="fas fa-globe-americas"></i> Estudios Sociales
+            <i class="fas fa-globe-americas" style="color: #FFB74D;"></i> Estudios Sociales
         </div>
         <div class="option espanol" onclick="redirectTo('https://mcstellarproduction.github.io/7-3_siteweb/e-espanol')">
-            <i class="fas fa-book-open"></i> Español
+            <i class="fas fa-book-open" style="color: #BA68C8;"></i> Español
         </div>
         <div class="option ingles" onclick="redirectTo('https://mcstellarproduction.github.io/7-3_siteweb/e-ingles')">
-            <i class="fas fa-language"></i> Inglés
+            <i class="fas fa-language" style="color: #FFD54F;"></i> Inglés
         </div>
         <div class="option frances" onclick="redirectTo('https://mcstellarproduction.github.io/7-3_siteweb/e-frances')">
-            <i class="fas fa-comment-dots"></i> Francés
+            <i class="fas fa-comment-dots" style="color: #FF8A65;"></i> Francés
         </div>
     </div>
+
+    <button class="back-button" onclick="window.location.href='https://mcstellarproduction.github.io/7-3_siteweb/exams_final_opccions1';">
+        <span class="icon">&#8592;</span> Volver
+    </button>
 
     <footer>
         Página Creada por: <a href="https://www.instagram.com/redaguilar218/" target="_blank">Luis Andres Zamora Aguilar</a>
@@ -190,10 +216,6 @@
             }, 300); // Esperamos que termine la animación antes de redirigir
         }
     </script>
-
-     <button class="back-button" onclick="window.location.href='https://mcstellarproduction.github.io/7-3_siteweb/exams_final_opccions1';">
-        <span class="icon">&#8592;</span> Back
-     </button>
 
 </body>
 </html>
