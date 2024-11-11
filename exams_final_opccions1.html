@@ -91,7 +91,7 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, transform 0.3s;
         }
 
         .button__icon-wrapper {
@@ -109,25 +109,11 @@
 
         .button:hover {
             background-color: #000;
+            transform: scale(1.05);
         }
 
         .button:hover .button__icon-wrapper {
             color: #000;
-        }
-
-        .button__icon-svg--copy {
-            position: absolute;
-            transform: translate(-150%, 150%);
-        }
-
-        .button:hover .button__icon-svg:first-child {
-            transition: transform 0.3s ease-in-out;
-            transform: translate(150%, -150%);
-        }
-
-        .button:hover .button__icon-svg--copy {
-            transition: transform 0.3s ease-in-out 0.1s;
-            transform: translate(0);
         }
 
         /* Estilo para el footer */
