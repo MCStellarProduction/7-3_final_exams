@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grupo 7-3 • Chat Educativo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            background-color: #f0f8ff; /* Color de fondo */
+        }
+        #chat-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            overflow-y: auto;
+            border: 2px solid #007BFF; /* Borde azul */
+            border-radius: 10px;
+            background-color: #ffffff; /* Fondo blanco */
+            margin: 20px;
+        }
+        .message {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 10px;
+            position: relative;
+            max-width: 60%;
+        }
+        .message .username {
+            font-weight: bold;
+            position: absolute;
+            top: -20px;
+            left: 10px;
+        }
+        #input-container {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            border-top: 1px solid #007BFF; /* Línea divisoria azul */
+            background-color: #ffffff; /* Fondo blanco */
+        }
+        #username, #message {
+            width: 30%;
+            padding: 10px;
+            border: 1px solid #007BFF; /* Borde azul */
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        #send-btn {
+            padding: 10px 20px;
+            background-color: #007BFF; /* Botón azul */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #send-btn:hover {
+            background-color: #0056b3; /* Botón azul más oscuro */
+        }
+    </style>
+</head>
+<body>
+
+<h1 style="text-align:center;">Chat Educativo</h1>
+<div id="chat-container"></div>
+
+<div id="input-container">
+    <input type="text" id="username" placeholder="Username" />
+    <input type="text" id="message" placeholder="Escribe tu mensaje..." />
+    <button id="send-btn">Enviar</button>
+</div>
+
+<script>
+    const chatContainer = document.getElementById('chat-container');
+    const usernameInput = document.getElementById('username');
+    const messageInput = document.getElementById('message');
+    const sendButton = document.getElementById('send-btn');
+
+    // Cargar mensajes guardados al cargar la página
+    window.onload = () => {
+        loadMessages();
+    };
+
+    sendButton.addEventListener('click', () => {
+        const username = usernameInput.value.trim();
+        const message = messageInput.value.trim();
+        
+        if (username && message) {
+            const messageData = {
+                username: username,
+                message: message,
+                timestamp: Date.now()
+            };
+            saveMessage(messageData);
+            appendMessage(messageData);
+            messageInput.value = ''; // Limpiar el campo de mensaje
+        } else {
+            alert('Por favor, introduce un nombre de usuario y un mensaje.');
+        }
+    });
+
+    function saveMessage(messageData) {
+        const messages = JSON.parse(localStorage.getItem('chatMessages')) || [];
+        messages.push(messageData);
+        localStorage.setItem('chatMessages', JSON.stringify(messages));
+    }
+
+    function loadMessages() {
+        const messages = JSON.parse(localStorage.getItem('chatMessages')) || [];
+        const now = Date.now();
+        chatContainer.innerHTML = ''; // Limpiar el chat antes de cargar
+        messages.forEach(messageData => {
+            // Verificar si el mensaje tiene menos de un día
+            if (now - messageData.timestamp < 86400000) { // 1 día en milisegundos
+                appendMessage(messageData);
+            }
+        });
+    }
+
+    function appendMessage(messageData) {
+        const messageDiv = document.createElement('div');
+        messageDiv.classList.add('message');
+        messageDiv.style.borderColor = getRandomColor();
+
+        const usernameSpan = document.createElement('span');
+        usernameSpan.classList.add('username');
+        usernameSpan.textContent = messageData.username;
+
+        messageDiv.appendChild(usernameSpan);
+        messageDiv.appendChild(document.createTextNode(messageData.message));
+        chatContainer.appendChild(messageDiv);
+        chatContainer.scrollTop = chatContainer.scrollHeight; // Desplazar hacia abajo
+    }
+
+    function getRandomColor() {
+        const letters = '0123456789ABCDEF';
+        let color = '#';
+        for (let i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
+</script>
+
+</body>
+</html>
