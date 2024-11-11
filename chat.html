@@ -54,6 +54,24 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra de los mensajes */
         }
 
+        .back-button {
+            background-color: #007bff; 
+            color: white; 
+            border: none; 
+            border-radius: 5px; 
+            padding: 10px 15px; 
+            font-size: 16px; 
+            cursor: pointer; 
+            display: flex;
+            align-items: center;
+        }
+        .back-button:hover {
+            background-color: #0056b3; 
+        }
+        .icon {
+            margin-right: 5px; 
+        }
+
         @keyframes fadeIn {
             0% { opacity: 0; }
             100% { opacity: 1; }
@@ -151,6 +169,10 @@
     <button id="send-btn"><i class="fas fa-paper-plane"></i>  Enviar</button>
 </div>
 <div id="check">✅</div> <!-- Elemento de check como emoji -->
+    
+<button class="back-button" onclick="window.location.href='https://mcstellarproduction.github.io/7-3_siteweb/';">
+        <span class="icon">&#8592;</span> Back
+</button>
 
 <script>
     const chatContainer = document.getElementById('chat-container');
