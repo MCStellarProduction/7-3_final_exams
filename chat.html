@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat Educativo</title>
+    <title>Grupo 7-3 • Chat</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
@@ -143,12 +143,12 @@
 </head>
 <body>
 
-<h1>Chat Educativo</h1>
+<h1> <i class="fas fa-chat"></i> Chat 7-3</h1>
 <div id="chat-container"></div>
 <div id="input-container">
-    <input type="text" id="username" placeholder="Nombre de usuario" />
-    <input type="text" id="message" placeholder="Escribe tu mensaje..." />
-    <button id="send-btn"><i class="fas fa-paper-plane"></i> Enviar</button>
+    <input type="text" id="username" placeholder="Nombre" />
+    <input type="text" id="message" placeholder="Mensaje" />
+    <button id="send-btn"><i class="fas fa-paper-plane"></i>  Enviar</button>
 </div>
 <div id="check">✅</div> <!-- Elemento de check como emoji -->
 
@@ -186,7 +186,7 @@
             animateSendButton(); // Animar botón
             messageInput.value = ''; // Limpiar el campo de mensaje
         } else {
-            alert('Por favor, introduce un nombre de usuario y un mensaje.');
+            alert('Error: Informacion Incompleta. No has puesto Nombre o un Mensaje');
         }
     });
 
@@ -211,7 +211,7 @@
     function appendMessage({ username, message }) {
         const messageDiv = document.createElement('div');
         messageDiv.classList.add('message');
-        messageDiv.innerHTML = `<span class="username">${username}</span>: ${message}`;
+        messageDiv.innerHTML = `<i class="fas fa-users"></i><span class="username">${username}</span>: ${message}`;
         chatContainer.appendChild(messageDiv);
 
         // Hacer que el mensaje se desplace hacia abajo
