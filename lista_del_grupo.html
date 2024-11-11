@@ -16,7 +16,7 @@
 
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #f4f4f9;
+            background-color: #f0f4ff; /* Fondo suave */
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -24,15 +24,16 @@
             height: 100vh;
             color: #333;
             background-image: url('bg_yellow.jpg'); /* Fondo educativo */
-            background-size: 1200px 1200px; /* Tamaño del patrón */
+            background-size: cover; /* Cambia a cover para un fondo más estético */
+            padding: 20px;
         }
 
         h1 {
-            font-size: 3rem;
+            font-size: 2.5rem;
             margin-bottom: 20px;
-            color: #FBF3CD;
+            color: #4a90e2; /* Color azul claro */
             text-align: center;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
             opacity: 0;
             animation: fadeIn 1s forwards; /* Animación de entrada */
         }
@@ -51,10 +52,10 @@
         .group-box {
             background-color: #ffffff;
             padding: 30px;
-            border-radius: 15px;
-            width: 80%;
+            border-radius: 10px; /* Bordes redondeados */
+            width: 90%; /* Ajustar ancho */
             max-width: 800px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             animation: fadeIn 1s forwards;
             text-align: left;
             opacity: 0;
@@ -63,27 +64,30 @@
 
         .group-box h2 {
             font-size: 2rem;
-            color: #F3D54B;
+            color: #f39c12; /* Color anaranjado */
             margin-bottom: 20px;
             font-weight: bold;
+            border-bottom: 2px solid #f39c12; /* Línea debajo del título */
+            padding-bottom: 10px;
         }
 
         .back-button {
-            background-color: #007bff; 
+            background-color: #3498db; /* Color azul */
             color: white; 
             border: none; 
             border-radius: 5px; 
-            padding: 10px 15px; 
+            padding: 10px 20px; 
             font-size: 16px; 
             cursor: pointer; 
             display: flex;
             align-items: center;
             margin-top: 20px;
             transition: background-color 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
         .back-button:hover {
-            background-color: #0056b3; 
+            background-color: #2980b9; /* Color azul oscuro al pasar el ratón */
         }
 
         .icon {
@@ -103,6 +107,7 @@
             margin-left: 20px;
             font-size: 1rem;
             color: #555;
+            line-height: 1.6; /* Espaciado entre líneas */
         }
 
         footer {
@@ -111,12 +116,16 @@
             text-align: center;
             font-size: 1rem;
             color: #555;
-            display: none;
         }
 
         footer a {
             text-decoration: none;
-            color: #5c6bc0;
+            color: #3498db; /* Color azul */
+            transition: color 0.3s;
+        }
+
+        footer a:hover {
+            color: #2980b9; /* Color azul oscuro al pasar el ratón */
         }
     </style>
 </head>
