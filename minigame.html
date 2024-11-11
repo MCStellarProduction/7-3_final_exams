@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Juego 2D Multijugador Simple</title>
+    <title>Juego 2D Estilo Minecraft</title>
     <style>
         body {
             margin: 0;
@@ -13,24 +13,38 @@
             justify-content: center;
             height: 100vh;
             background-color: #87CEEB; /* Fondo cielo */
+            font-family: 'Arial', sans-serif;
         }
         #gameCanvas {
-            border: 1px solid black;
-            background-color: #228B22; /* Fondo del juego */
+            border: 1px solid #222;
+            background-color: #87CEEB; /* Fondo del juego */
         }
         .controls {
             margin-top: 10px;
+            display: flex;
+            justify-content: center;
         }
         .button {
+            background-color: #5C5C5C; /* Color de fondo del botón */
+            border: none;
+            border-radius: 5px;
+            color: white;
             padding: 10px 20px;
             margin: 5px;
             font-size: 16px;
             cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #3C3C3C; /* Color al pasar el mouse */
+        }
+        .button:active {
+            background-color: #7D7D7D; /* Color al hacer clic */
         }
     </style>
 </head>
 <body>
-    <canvas id="gameCanvas" width="800" height="600"></canvas>
+    <canvas id="gameCanvas" width="800" height="400"></canvas>
     <div class="controls">
         <button id="left" class="button">Izquierda</button>
         <button id="right" class="button">Derecha</button>
@@ -40,15 +54,34 @@
         const canvas = document.getElementById('gameCanvas');
         const ctx = canvas.getContext('2d');
 
+        // Cargar imágenes de bloques y personajes
+        const dirtBlock = new Image();
+        dirtBlock.src = 'https://i.imgur.com/ttdIN0V.png'; // Bloque de tierra
+        const grassBlock = new Image();
+        grassBlock.src = 'https://i.imgur.com/0bq5dpm.png'; // Bloque de hierba
+        const playerImg = new Image();
+        playerImg.src = 'https://i.imgur.com/EHw2gFl.png'; // Personaje
+
         // Definición de jugadores
         const players = [
-            { x: 100, y: 500, width: 30, height: 30, color: 'blue', velocityY: 0, grounded: true, health: 100 },
-            { x: 400, y: 500, width: 30, height: 30, color: 'red', velocityY: 0, grounded: true, health: 100 }
+            { x: 100, y: 300, width: 32, height: 32, color: 'blue', velocityY: 0, grounded: true, health: 100 },
+            { x: 400, y: 300, width: 32, height: 32, color: 'red', velocityY: 0, grounded: true, health: 100 }
+        ];
+
+        // Mapa del mundo (0 = aire, 1 = hierba, 2 = tierra)
+        const world = [
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 1, 1, 1, 1, 1, 0],
+            [0, 0, 0, 0, 2, 2, 2, 2, 2, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
         ];
 
         const gravity = 0.5;
         const jumpPower = -10;
-        const friction = 0.9;
 
         // Control de botones
         document.getElementById('left').addEventListener('click', () => movePlayer(0, -1));
@@ -74,6 +107,14 @@
             // Colisiones simples con los límites del canvas
             if (player.x < 0) player.x = 0;
             if (player.x + player.width > canvas.width) player.x = canvas.width - player.width;
+
+            // Colisión con el suelo
+            const groundLevel = 400; // Nivel del suelo en el canvas
+            if (player.y + player.height >= groundLevel) {
+                player.y = groundLevel - player.height;
+                player.velocityY = 0;
+                player.grounded = true;
+            }
         }
 
         function update() {
@@ -90,9 +131,24 @@
                 }
 
                 // Dibujar jugador
-                ctx.fillStyle = player.color;
-                ctx.fillRect(player.x, player.y, player.width, player.height);
+                ctx.drawImage(playerImg, player.x, player.y, player.width, player.height);
             });
+
+            // Dibujar el mundo
+            drawWorld();
+        }
+
+        function drawWorld() {
+            for (let y = 0; y < world.length; y++) {
+                for (let x = 0; x < world[y].length; x++) {
+                    const block = world[y][x];
+                    if (block === 1) {
+                        ctx.drawImage(grassBlock, x * 32, y * 32, 32, 32); // Dibuja hierba
+                    } else if (block === 2) {
+                        ctx.drawImage(dirtBlock, x * 32, y * 32, 32, 32); // Dibuja tierra
+                    }
+                }
+            }
         }
 
         function gameLoop() {
@@ -101,7 +157,14 @@
             requestAnimationFrame(gameLoop); // Llamar de nuevo a gameLoop
         }
 
-        gameLoop(); // Iniciar el bucle del juego
+        // Esperar a que las imágenes se carguen
+        grassBlock.onload = () => {
+            dirtBlock.onload = () => {
+                playerImg.onload = () => {
+                    gameLoop(); // Iniciar el bucle del juego
+                };
+            };
+        };
     </script>
 </body>
 </html>
