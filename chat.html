@@ -48,6 +48,7 @@
             border-radius: 15px;
             position: relative;
             max-width: 80%; /* Ancho máximo del mensaje */
+            background-color: #f0f0f0; /* Color de fondo claro para el mensaje */
             opacity: 0;
             animation: fadeIn 0.5s forwards; /* Animación de entrada */
             cursor: pointer; /* Cambiar el cursor al pasar sobre el mensaje */
@@ -61,13 +62,15 @@
         }
 
         .message:hover {
-            background-color: #ecf0f1; /* Color claro al pasar el ratón */
+            background-color: #e0e0e0; /* Color claro al pasar el ratón */
         }
 
-        .message .username {
+        .username {
+            display: block; /* Asegurarse de que el nombre de usuario esté en una nueva línea */
             font-weight: bold;
             color: #2980b9; /* Color del nombre de usuario */
             font-size: 0.9em; /* Tamaño del texto del usuario */
+            margin-top: 5px; /* Espacio entre el mensaje y el nombre de usuario */
         }
 
         .messageBox {
@@ -214,19 +217,13 @@
 </div>
 
 <button class="back-button" onclick="window.location.href='https://mcstellarproduction.github.io/7-3_siteweb/';">
-    <span class="icon">&#8592;</span> Back
+    <i class="icon fas fa-arrow-left"></i> Volver
 </button>
 
 <script>
     const chatContainer = document.getElementById('chat-container');
     const messageInput = document.getElementById('messageInput');
     const sendButton = document.getElementById('sendButton');
-    const check = document.getElementById('check');
-
-    // Cargar mensajes guardados al cargar la página
-    window.onload = () => {
-        loadMessages();
-    };
 
     sendButton.addEventListener('click', () => {
         const username = prompt('Introduce tu nombre:');
@@ -273,7 +270,10 @@
     function appendMessage({ username, message }) {
         const messageDiv = document.createElement('div');
         messageDiv.classList.add('message');
-        messageDiv.innerHTML = `<i class="fas fa-user"></i> <span class="username">${username}</span>: ${message}`;
+        messageDiv.innerHTML = `
+            ${message} 
+            <span class="username">${username}</span>
+        `;
         chatContainer.appendChild(messageDiv);
 
         // Hacer que el mensaje se desplace hacia abajo
@@ -297,6 +297,9 @@
         localStorage.removeItem('chatMessages'); // Limpiar los mensajes del localStorage
         chatContainer.innerHTML = ''; // Limpiar el chat visualmente
     }
+
+    // Cargar mensajes al inicio
+    loadMessages();
 </script>
 
 </body>
