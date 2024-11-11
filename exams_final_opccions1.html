@@ -75,7 +75,7 @@
         }
 
         /* Estilos de los botones */
-        .option {
+        .button {
             display: flex;
             align-items: center;
             justify-content: center;
@@ -94,7 +94,7 @@
         }
 
         /* Efecto de hover en los botones */
-        .option:hover {
+        .button:hover {
             transform: scale(1.05);
         }
 
@@ -108,7 +108,7 @@
         }
 
         /* Iconos en los botones */
-        .option i {
+        .button i {
             font-size: 1.5rem;
         }
 
@@ -155,12 +155,12 @@
     <h1>Grupo 7-3</h1>
 
     <div class="container">
-        <div class="option eximidos" onclick="redirectTo('https://mcstellarproduction.github.io/7-3_siteweb/eximidos_zone')">
+        <button class="button eximidos" onclick="redirectTo('https://mcstellarproduction.github.io/7-3_siteweb/eximidos_zone')">
             <i class="fas fa-check-circle" style="color: #4CAF50;"></i> Eximidos
-        </div>
-        <div class="option estudio" onclick="redirectTo('https://mcstellarproduction.github.io/7-3_siteweb/estudio_zone_opccions2')">
+        </button>
+        <button class="button estudio" onclick="redirectTo('https://mcstellarproduction.github.io/7-3_siteweb/estudio_zone_opccions2')">
             <i class="fas fa-book" style="color: #f8E697;"></i> Estudio
-        </div>
+        </button>
     </div>
 
     <button class="back-button" onclick="window.location.href='https://mcstellarproduction.github.io/7-3_siteweb/';">
@@ -178,7 +178,7 @@
         // Función para redireccionar con animación
         function redirectTo(url) {
             // Animación de salida (escala)
-            const options = document.querySelectorAll('.option');
+            const options = document.querySelectorAll('.button');
             options.forEach(option => {
                 option.style.transform = 'scale(0)';
             });
