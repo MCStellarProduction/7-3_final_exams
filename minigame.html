@@ -3,168 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Juego 2D Estilo Minecraft</title>
+    <title>Juego de Construcción Multijugador</title>
     <style>
         body {
             margin: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            background-color: #87CEEB; /* Fondo cielo */
-            font-family: 'Arial', sans-serif;
+            font-family: Arial, sans-serif;
+            background-color: #87CEEB; /* Color de fondo del cielo */
         }
-        #gameCanvas {
-            border: 1px solid #222;
-            background-color: #87CEEB; /* Fondo del juego */
+        #game {
+            display: grid;
+            grid-template-columns: repeat(20, 30px);
+            grid-template-rows: repeat(20, 30px);
+            gap: 1px;
+            margin: 20px auto;
+            border: 2px solid #444;
+            background-color: #A0522D; /* Color de fondo del terreno */
         }
-        .controls {
-            margin-top: 10px;
-            display: flex;
-            justify-content: center;
-        }
-        .button {
-            background-color: #5C5C5C; /* Color de fondo del botón */
-            border: none;
-            border-radius: 5px;
-            color: white;
-            padding: 10px 20px;
-            margin: 5px;
-            font-size: 16px;
+        .cell {
+            width: 30px;
+            height: 30px;
+            position: relative;
+            border: 1px solid #fff;
             cursor: pointer;
-            transition: background-color 0.3s;
         }
-        .button:hover {
-            background-color: #3C3C3C; /* Color al pasar el mouse */
+        .cell.grass {
+            background-color: #7CFC00; /* Color de la hierba */
         }
-        .button:active {
-            background-color: #7D7D7D; /* Color al hacer clic */
+        .cell.dirt {
+            background-color: #8B4513; /* Color de la tierra */
+        }
+        .cell.water {
+            background-color: #1E90FF; /* Color del agua */
+        }
+        .player {
+            width: 28px;
+            height: 28px;
+            background-color: #FF4500; /* Color del jugador */
+            position: absolute;
+            border-radius: 50%;
+        }
+        .toolbar {
+            text-align: center;
+            margin: 10px;
+        }
+        .tool {
+            display: inline-block;
+            padding: 10px;
+            border: 1px solid #444;
+            background-color: #fff;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .tool.selected {
+            border: 2px solid #FF4500; /* Resaltar la herramienta seleccionada */
         }
     </style>
 </head>
 <body>
-    <canvas id="gameCanvas" width="800" height="400"></canvas>
-    <div class="controls">
-        <button id="left" class="button">Izquierda</button>
-        <button id="right" class="button">Derecha</button>
-        <button id="jump" class="button">Saltar</button>
-    </div>
-    <script>
-        const canvas = document.getElementById('gameCanvas');
-        const ctx = canvas.getContext('2d');
 
-        // Cargar imágenes de bloques y personajes
-        const dirtBlock = new Image();
-        dirtBlock.src = 'https://i.imgur.com/ttdIN0V.png'; // Bloque de tierra
-        const grassBlock = new Image();
-        grassBlock.src = 'https://i.imgur.com/0bq5dpm.png'; // Bloque de hierba
-        const playerImg = new Image();
-        playerImg.src = 'https://i.imgur.com/EHw2gFl.png'; // Personaje
+<div class="toolbar">
+    <div class="tool" id="grass" onclick="selectTool('grass')">Hierba</div>
+    <div class="tool" id="dirt" onclick="selectTool('dirt')">Tierra</div>
+    <div class="tool" id="water" onclick="selectTool('water')">Agua</div>
+</div>
 
-        // Definición de jugadores
-        const players = [
-            { x: 100, y: 300, width: 32, height: 32, color: 'blue', velocityY: 0, grounded: true, health: 100 },
-            { x: 400, y: 300, width: 32, height: 32, color: 'red', velocityY: 0, grounded: true, health: 100 }
-        ];
+<div id="game"></div>
 
-        // Mapa del mundo (0 = aire, 1 = hierba, 2 = tierra)
-        const world = [
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 1, 1, 1, 1, 1, 0],
-            [0, 0, 0, 0, 2, 2, 2, 2, 2, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-        ];
+<script>
+    const game = document.getElementById('game');
+    const blockTypes = ['grass', 'dirt', 'water'];
+    let selectedTool = 'grass';
 
-        const gravity = 0.5;
-        const jumpPower = -10;
-
-        // Control de botones
-        document.getElementById('left').addEventListener('click', () => movePlayer(0, -1));
-        document.getElementById('right').addEventListener('click', () => movePlayer(0, 1));
-        document.getElementById('jump').addEventListener('click', () => jumpPlayer());
-
-        function movePlayer(playerIndex, direction) {
-            const player = players[playerIndex];
-            player.x += direction * 5; // Mover a la izquierda o derecha
-            handleCollision(player);
+    // Crear la cuadrícula de bloques
+    const gridSize = 20; // Tamaño de la cuadrícula
+    for (let x = 0; x < gridSize; x++) {
+        for (let y = 0; y < gridSize; y++) {
+            const cell = document.createElement('div');
+            cell.classList.add('cell', 'grass');
+            cell.dataset.x = x;
+            cell.dataset.y = y;
+            cell.addEventListener('click', () => toggleBlock(cell));
+            game.appendChild(cell);
         }
+    }
 
-        function jumpPlayer() {
-            players.forEach(player => {
-                if (player.grounded) {
-                    player.velocityY = jumpPower;
-                    player.grounded = false;
-                }
-            });
-        }
+    function toggleBlock(cell) {
+        const x = cell.dataset.x;
+        const y = cell.dataset.y;
 
-        function handleCollision(player) {
-            // Colisiones simples con los límites del canvas
-            if (player.x < 0) player.x = 0;
-            if (player.x + player.width > canvas.width) player.x = canvas.width - player.width;
+        // Cambiar el bloque
+        const newType = cell.classList.contains(selectedTool) ? 'grass' : selectedTool;
 
-            // Colisión con el suelo
-            const groundLevel = 400; // Nivel del suelo en el canvas
-            if (player.y + player.height >= groundLevel) {
-                player.y = groundLevel - player.height;
-                player.velocityY = 0;
-                player.grounded = true;
-            }
-        }
+        // Actualizar el bloque en la interfaz
+        cell.className = `cell ${newType}`; // Actualiza la clase del bloque
+    }
 
-        function update() {
-            players.forEach(player => {
-                // Aplicar gravedad
-                player.velocityY += gravity;
-                player.y += player.velocityY;
+    // Función para seleccionar la herramienta
+    function selectTool(tool) {
+        selectedTool = tool;
+        document.querySelectorAll('.tool').forEach(t => t.classList.remove('selected'));
+        document.getElementById(tool).classList.add('selected');
+    }
+</script>
 
-                // Colisión con el suelo
-                if (player.y + player.height >= canvas.height) {
-                    player.y = canvas.height - player.height;
-                    player.velocityY = 0;
-                    player.grounded = true;
-                }
-
-                // Dibujar jugador
-                ctx.drawImage(playerImg, player.x, player.y, player.width, player.height);
-            });
-
-            // Dibujar el mundo
-            drawWorld();
-        }
-
-        function drawWorld() {
-            for (let y = 0; y < world.length; y++) {
-                for (let x = 0; x < world[y].length; x++) {
-                    const block = world[y][x];
-                    if (block === 1) {
-                        ctx.drawImage(grassBlock, x * 32, y * 32, 32, 32); // Dibuja hierba
-                    } else if (block === 2) {
-                        ctx.drawImage(dirtBlock, x * 32, y * 32, 32, 32); // Dibuja tierra
-                    }
-                }
-            }
-        }
-
-        function gameLoop() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height); // Limpiar canvas
-            update();
-            requestAnimationFrame(gameLoop); // Llamar de nuevo a gameLoop
-        }
-
-        // Esperar a que las imágenes se carguen
-        grassBlock.onload = () => {
-            dirtBlock.onload = () => {
-                playerImg.onload = () => {
-                    gameLoop(); // Iniciar el bucle del juego
-                };
-            };
-        };
-    </script>
 </body>
 </html>
