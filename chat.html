@@ -66,7 +66,6 @@
         }
 
         .username {
-            display: block; /* Asegurarse de que el nombre de usuario esté en una nueva línea */
             font-weight: bold;
             color: #2980b9; /* Color del nombre de usuario */
             font-size: 0.9em; /* Tamaño del texto del usuario */
@@ -195,6 +194,12 @@
 <h1> <i class="fas fa-comment"></i> Chat 7-3</h1>
 <div id="chat-container"></div>
 
+<!-- Barra para nombre de usuario -->
+<div class="messageBox" id="usernameDisplay">
+    <span class="username">Usuario: <span id="currentUsername"></span></span>
+</div>
+
+<!-- Entrada para el mensaje y botón de enviar -->
 <div class="messageBox">
     <div class="fileUploadWrapper">
         <label for="file">
@@ -216,19 +221,19 @@
     </button>
 </div>
 
-<button class="back-button" onclick="window.location.href='https://mcstellarproduction.github.io/7-3_siteweb/';">
-    <i class="icon fas fa-arrow-left"></i> Volver
-</button>
-
 <script>
     const chatContainer = document.getElementById('chat-container');
     const messageInput = document.getElementById('messageInput');
     const sendButton = document.getElementById('sendButton');
+    const currentUsernameDisplay = document.getElementById('currentUsername');
 
     sendButton.addEventListener('click', () => {
         const username = prompt('Introduce tu nombre:');
-        const message = messageInput.value.trim();
+        if (username) {
+            currentUsernameDisplay.textContent = username; // Mostrar el nombre de usuario
+        }
 
+        const message = messageInput.value.trim();
         if (username && message) {
             // Comando para limpiar mensajes
             if (message.toLowerCase() === '/clear') {
