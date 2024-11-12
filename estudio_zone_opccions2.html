@@ -179,6 +179,14 @@
             </span>
             Francés
         </a>
+
+        <!-- Botón Volver -->
+        <a href="javascript:void(0)" class="button volver" id="btn-volver">
+            <span class="button__icon-wrapper">
+                <i class="fas fa-arrow-left"></i>
+            </span>
+            Volver
+        </a>
     </div>
 
     <footer>
@@ -201,6 +209,15 @@
             setTimeout(function() {
                 window.location.href = url;
             }, 300); // Tiempo de duración de la animación (300ms)
+        }
+
+        // Función para el botón Volver, que redirige a la página anterior
+        function goBackWithAnimation(button) {
+            button.classList.add('clicked');
+            button.style.pointerEvents = 'none'; // Desactivar la interacción del botón durante la animación
+            setTimeout(function() {
+                window.history.back(); // Regresar a la página anterior
+            }, 300); // Esperar a que termine la animación
         }
 
         // Asignar eventos de clic a los botones
@@ -227,6 +244,12 @@
         document.getElementById('btn-frances').addEventListener('click', function(event) {
             event.preventDefault();
             redirectWithAnimation(this, "https://mcstellarproduction.github.io/7-3_siteweb/e-frances");
+        });
+        
+        // Asignar evento de clic al botón Volver
+        document.getElementById('btn-volver').addEventListener('click', function(event) {
+            event.preventDefault();
+            goBackWithAnimation(this);
         });
     </script>
 
