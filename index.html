@@ -58,48 +58,64 @@
             animation: fadeIn 1s forwards; /* Animación de entrada */
         }
 
-        /* Estilos del botón */
+        /* Estilos de los botones */
         .button {
-            line-height: 1;
-            text-decoration: none;
-            display: inline-flex;
-            border: none;
-            cursor: pointer;
-            align-items: center;
-            gap: 0.75rem;
-            background-color: var(--clr);
-            color: #fff;
-            border-radius: 10rem;
-            font-weight: 600;
-            padding: 0.75rem 1.5rem;
-            padding-left: 20px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            transition: background-color 0.3s, transform 0.3s;
-        }
-
-        /* Efecto de hover en los botones */
-        .button:hover {
-            background-color: #000;
-            transform: scale(1.05);
-        }
-
-        /* Iconos en los botones */
-        .button__icon-wrapper {
-            flex-shrink: 0;
-            width: 25px;
-            height: 25px;
             position: relative;
-            color: var(--clr);
-            background-color: #fff;
-            border-radius: 50%;
-            display: grid;
-            place-items: center;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 2rem;
+            border: 2px solid transparent;
+            border-radius: 9999px;
+            background-color: #0A0D2D;
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            cursor: pointer;
             overflow: hidden;
+            z-index: 10;
         }
 
-        /* Estilo para los colores específicos de los botones */
+        /* Efecto hover y transformación */
+        .button:hover {
+            color: #fff;
+            background-color: #008080;
+            border-color: #008080;
+        }
+
+        .button:hover svg {
+            transform: rotate(90deg);
+        }
+
+        .button:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #81c784;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.7s ease-in-out;
+            z-index: -1;
+        }
+
+        .button:hover:before {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .button svg {
+            width: 1.5rem;
+            height: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        /* Estilo específico de los botones */
         .examenes {
             --clr: #81c784; /* Verde */
         }
