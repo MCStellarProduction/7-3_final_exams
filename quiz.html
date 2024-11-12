@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario de Preguntas Aleatorias</title>
+  <style>
+    /* Estilos generales */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .quiz-container {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Barra de tiempo */
+    .time-bar {
+      width: 100%;
+      height: 10px;
+      background-color: #ccc;
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 100%;
+      background-color: #66ff66;
+      animation: timeAnimation 20s linear forwards;
+    }
+
+    @keyframes timeAnimation {
+      from {
+        width: 100%;
+      }
+      to {
+        width: 0;
+      }
+    }
+
+    /* Estilo de las preguntas de entrada */
+    .input-container {
+      position: relative;
+      margin: 20px 0;
+    }
+
+    .input-container input[type="text"], .input-container textarea {
+      font-size: 16px;
+      width: 100%;
+      border: none;
+      border-bottom: 2px solid #ccc;
+      padding: 5px 0;
+      background-color: transparent;
+      outline: none;
+      resize: none;
+    }
+
+    .input-container .label {
+      position: absolute;
+      top: 0;
+      left: 0;
+      color: #ccc;
+      transition: all 0.3s ease;
+      pointer-events: none;
+    }
+
+    .input-container input[type="text"]:focus ~ .label,
+    .input-container input[type="text"]:valid ~ .label,
+    .input-container textarea:focus ~ .label,
+    .input-container textarea:valid ~ .label {
+      top: -20px;
+      font-size: 16px;
+      color: #333;
+    }
+
+    .input-container .underline {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 2px;
+      width: 100%;
+      background-color: #333;
+      transform: scaleX(0);
+      transition: all 0.3s ease;
+    }
+
+    .input-container input[type="text"]:focus ~ .underline,
+    .input-container input[type="text"]:valid ~ .underline,
+    .input-container textarea:focus ~ .underline,
+    .input-container textarea:valid ~ .underline {
+      transform: scaleX(1);
+    }
+
+    input[type="text"], textarea {
+      padding: 10px;
+    }
+
+    textarea {
+      min-height: 100px;
+    }
+
+    /* Botones de selección múltiple */
+    button.choice {
+      outline: none;
+      cursor: pointer;
+      border: none;
+      padding: 0.9rem 2rem;
+      margin: 0.5rem;
+      font-family: inherit;
+      font-size: 17px;
+      font-weight: 700;
+      border-radius: 500px;
+      background: #66ff66;
+      color: ghostwhite;
+      transition: background 0.4s;
+    }
+
+    button.choice:hover {
+      background: #55cc55;
+    }
+
+    button.choice.correct {
+      background-color: #4caf50;
+    }
+
+    button.choice.incorrect {
+      background-color: #f44336;
+    }
+  </style>
+</head>
+<body>
+  <div class="quiz-container">
+    <!-- Barra de tiempo -->
+    <div class="time-bar">
+      <div class="progress-bar"></div>
+    </div>
+
+    <!-- Preguntas generadas aleatoriamente -->
+    <div id="questions-container"></div>
+
+    <div class="submit">
+      <button id="submit-btn">Enviar respuestas</button>
+    </div>
+  </div>
+
+  <script>
+    // Lista de preguntas predefinidas
+    const questions = [
+      {
+        type: 'short',
+        question: '¿Cuál es la capital de Francia?',
+        answer: 'paris'
+      },
+      {
+        type: 'long',
+        question: 'Explica la teoría de la relatividad.',
+        answer: 'La teoría de la relatividad de Einstein describe cómo la gravedad afecta el espacio-tiempo.'
+      },
+      {
+        type: 'multiple',
+        question: '¿Qué continente es más grande?',
+        options: ['Asia', 'Rusia', 'América'],
+        correctAnswer: 'Rusia'
+      },
+      {
+        type: 'short',
+        question: '¿Cuál es el elemento químico con el símbolo "O"?',
+        answer: 'oxígeno'
+      },
+      {
+        type: 'long',
+        question: 'Describe el proceso de fotosíntesis.',
+        answer: 'La fotosíntesis es el proceso mediante el cual las plantas convierten la luz solar en energía.'
+      }
+    ];
+
+    // Función para mezclar las preguntas aleatoriamente
+    function shuffleQuestions(arr) {
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
+    // Función para mostrar las preguntas
+    function renderQuestions() {
+      const shuffledQuestions = shuffleQuestions(questions);
+      const container = document.getElementById('questions-container');
+      container.innerHTML = '';
+
+      shuffledQuestions.forEach((question, index) => {
+        if (question.type === 'short') {
+          // Pregunta de respuesta corta
+          container.innerHTML += `
+            <div class="input-container">
+              <input type="text" id="question${index + 1}" required>
+              <label for="question${index + 1}" class="label">${question.question}</label>
+              <div class="underline"></div>
+            </div>
+          `;
+        } else if (question.type === 'long') {
+          // Pregunta de respuesta larga
+          container.innerHTML += `
+            <div class="input-container">
+              <textarea id="question${index + 1}" required></textarea>
+              <label for="question${index + 1}" class="label">${question.question}</label>
+              <div class="underline"></div>
+            </div>
+          `;
+        } else if (question.type === 'multiple') {
+          // Pregunta de selección múltiple
+          let optionsHTML = '';
+          question.options.forEach(option => {
+            optionsHTML += `
+              <button class="choice" data-correct="${option === question.correctAnswer}">${option}</button>
+            `;
+          });
+          container.innerHTML += `
+            <div class="multiple-choice">
+              <p>${question.question}</p>
+              ${optionsHTML}
+            </div>
+          `;
+        }
+      });
+
+      // Función para manejar la respuesta de selección múltiple
+      const buttons = document.querySelectorAll('.multiple-choice button');
+      buttons.forEach(button => {
+        button.addEventListener('click', () => {
+          const correct = button.dataset.correct === 'true';
+          if (correct) {
+            button.classList.add('correct');
+            button.classList.remove('incorrect');
+          } else {
+            button.classList.add('incorrect');
+            button.classList.remove('correct');
+          }
+        });
+      });
+    }
+
+    // Llamar a la función para renderizar las preguntas
+    renderQuestions();
+
+    // Temporizador de 20 segundos
+    let timeLimit = 20;
+    const progressBar = document.querySelector('.progress-bar');
+    let timer;
+
+    function startTimer() {
+      timer = setInterval(() => {
+        timeLimit--;
+        if (timeLimit <= 0) {
+          clearInterval(timer);
+          alert('¡Tiempo agotado!');
+        }
+      }, 1000);
+    }
+
+    startTimer();
+
+    // Enviar respuestas
+    const submitBtn = document.getElementById('submit-btn');
+    submitBtn.addEventListener('click', () => {
+      const shortAnswers = ['question1', 'question2', 'question3', 'question4', 'question5'];
+      let allAnswered = true;
+
+      shortAnswers.forEach((id) => {
+        const input = document.getElementById(id);
+        if (!input || !input.value.trim()) {
+          allAnswered = false;
+        }
+      });
+
+      if (allAnswered) {
+        alert('¡Respuestas enviadas correctamente!');
+      } else {
+        alert('Por favor, completa todas las preguntas.');
+      }
+    });
+  </script>
+</body>
+</html>
