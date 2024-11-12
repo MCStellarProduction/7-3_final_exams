@@ -3,233 +3,139 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grupo 7-3 • Chat</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Grupo 7-3 • Closed</title>
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
+        /* Reset de márgenes y paddings */
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #e3f2fd;
+            color: #333;
+            background-image: url('close.jpg');
+            background-size: 1200px 1200px; /* Fondo educativo */
             display: flex;
             flex-direction: column;
-            height: 100vh;
-            background: url('bg_8.jpg');
-            background-size: 1200px 1200px; /* Fondo claro */
-            align-items: center;
             justify-content: center;
+            align-items: center;
+            height: 100%;
+            padding: 20px;
         }
 
         h1 {
-            color: #2c3e50; /* Color del título */
-            margin: 20px 0;
-            font-size: 2.5em; /* Tamaño del título */
-            text-align: center; /* Centrar el título */
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Sombra del título */
+            font-size: 4rem; /* Título más grande */
+            margin-bottom: 30px;
+            color: transparent;
+            background: linear-gradient(to right, #BB0E22, #B21613, #BE2414); /* Gradiente de varios tonos de verde */
+            -webkit-background-clip: text; /* Hace que el gradiente se aplique al texto */
+            background-clip: text; /* Propiedad estándar para soportar todos los navegadores */
+            text-align: center;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+            animation: slideDown 1s ease-out forwards;
         }
 
-        #chat-container {
-            flex: 1;
+        /* Animación para el título */
+        @keyframes slideDown {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Contenedor para los globos de texto */
+        .container {
             display: flex;
             flex-direction: column;
-            padding: 20px;
-            overflow-y: auto;
-            border-radius: 8px;
-            background-color: white; /* Fondo blanco */
-            margin: 20px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Sombra del contenedor */
-            width: 90%; /* Ancho ajustable */
-            max-width: 500px; /* Ancho máximo */
-            transition: transform 0.3s; /* Suavizar el contenedor */
-        }
-
-        .message {
-            margin: 10px 0;
-            padding: 10px 15px;
-            border-radius: 15px;
-            position: relative;
-            max-width: 80%; /* Ancho máximo del mensaje */
-            background-color: #f0f0f0; /* Color de fondo claro para el mensaje */
+            gap: 30px;
             opacity: 0;
-            animation: fadeIn 0.5s forwards; /* Animación de entrada */
-            cursor: pointer; /* Cambiar el cursor al pasar sobre el mensaje */
-            transition: background-color 0.3s ease; /* Transición suave para el color de fondo */
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra de los mensajes */
-        }
-
-        @keyframes fadeIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
-        }
-
-        .message:hover {
-            background-color: #e0e0e0; /* Color claro al pasar el ratón */
-        }
-
-        .username {
-            font-weight: bold;
-            color: #2980b9; /* Color del nombre de usuario */
-            font-size: 0.9em; /* Tamaño del texto del usuario */
-            margin-top: 5px; /* Espacio entre el mensaje y el nombre de usuario */
-        }
-
-        .messageBox {
-            width: fit-content;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #2d2d2d;
-            padding: 0 15px;
-            border-radius: 10px;
-            border: 1px solid rgb(63, 63, 63);
-            margin-top: 10px; /* Añadir margen superior */
-        }
-
-        .messageBox:focus-within {
-            border: 1px solid rgb(110, 110, 110);
-        }
-
-        .fileUploadWrapper {
-            width: fit-content;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: Arial, Helvetica, sans-serif;
-        }
-
-        #file {
-            display: none;
-        }
-
-        .fileUploadWrapper label {
-            cursor: pointer;
-            width: fit-content;
-            height: fit-content;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-
-        .fileUploadWrapper label svg {
-            height: 18px;
-        }
-
-        .tooltip {
-            position: absolute;
-            top: -40px;
-            display: none;
-            opacity: 0;
-            color: white;
-            font-size: 10px;
-            text-wrap: nowrap;
-            background-color: #000;
-            padding: 6px 10px;
-            border: 1px solid #3c3c3c;
-            border-radius: 5px;
-            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.596);
-            transition: all 0.3s;
-        }
-
-        .fileUploadWrapper label:hover .tooltip {
-            display: block;
-            opacity: 1;
-        }
-
-        #usernameInput {
+            animation: fadeInUp 1s ease-out forwards;
             width: 100%;
-            height: 40px;
-            background-color: transparent;
-            outline: none;
-            border: 1px solid rgb(63, 63, 63);
-            border-radius: 10px;
-            padding-left: 10px;
-            color: white;
-            margin-bottom: 10px; /* Espacio inferior */
+            max-width: 1000px;
+            margin: 0 auto;
         }
 
-        #messageInput {
-            width: 200px;
-            height: 100%;
-            background-color: transparent;
-            outline: none;
-            border: none;
-            padding-left: 10px;
-            color: white;
-        }
-
-        #sendButton {
-            width: fit-content;
-            height: 100%;
-            background-color: transparent;
-            outline: none;
-            border: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        #sendButton svg {
-            height: 18px;
-            transition: all 0.3s;
-        }
-
-        /* Estilos para el botón */
-        button {
-            font-family: inherit;
-            font-size: 20px;
-            background: royalblue;
-            color: white;
-            padding: 0.7em 1em;
-            padding-left: 0.9em;
-            display: flex;
-            align-items: center;
-            border: none;
-            border-radius: 16px;
-            overflow: hidden;
-            transition: all 0.2s;
-            cursor: pointer;
-        }
-
-        button span {
-            display: block;
-            margin-left: 0.3em;
-            transition: all 0.3s ease-in-out;
-        }
-
-        button svg {
-            display: block;
-            transform-origin: center center;
-            transition: transform 0.3s ease-in-out;
-        }
-
-        button:hover .svg-wrapper {
-            animation: fly-1 0.6s ease-in-out infinite alternate;
-        }
-
-        button:hover svg {
-            transform: translateX(1.2em) rotate(45deg) scale(1.1);
-        }
-
-        button:hover span {
-            transform: translateX(5em);
-        }
-
-        button:active {
-            transform: scale(0.95);
-        }
-
-        @keyframes fly-1 {
+        /* Animación de entrada desde abajo */
+        @keyframes fadeInUp {
             from {
-                transform: translateY(0.1em);
+                opacity: 0;
+                transform: translateY(30px);
             }
-
             to {
-                transform: translateY(-0.1em);
+                opacity: 1;
+                transform: translateY(0);
             }
+        }
+
+        /* Estilos de los globos de texto */
+        .balloon {
+            background-color: #ffffff;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            font-size: 1.2rem;
+            text-align: left;
+            color: #333;
+            animation: fadeInUp 1s ease-out forwards;
+        }
+
+        /* Hover en los globos de texto */
+        .balloon:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Títulos dentro de los globos */
+        .balloon h2 {
+            font-size: 2rem; /* Aumentamos el tamaño de los títulos dentro de los globos */
+            font-weight: bold;
+            color: transparent;
+            background: linear-gradient(to right, #DC0044, #E53D6D, #F36863); /* Gradiente de varios tonos de verde */
+            -webkit-background-clip: text; /* Hace que el gradiente se aplique al texto */
+            background-clip: text; /* Propiedad estándar para soportar todos los navegadores */
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        /* Descripciones dentro de los globos */
+        .balloon p {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* Animación de desplazamiento para hacer scroll */
+        @keyframes bounceIn {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0px;
+            text-align: center;
+            font-size: 1rem;
+            color: #555;
+            display: none;
+        }
+
+        footer a {
+            text-decoration: none;
+            color: #5c6bc0;
         }
 
         .back-button {
@@ -242,8 +148,6 @@
             cursor: pointer; 
             display: flex;
             align-items: center;
-            margin: 10px;
-            /* Mantener el botón siempre visible */
         }
         .back-button:hover {
             background-color: #0056b3; 
@@ -251,136 +155,64 @@
         .icon {
             margin-right: 5px; 
         }
+
+        /* Hacer la página responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3.5rem; /* Reducir ligeramente el tamaño del título en pantallas medianas */
+                margin-bottom: 20px;
+            }
+
+            .container {
+                width: 100%;
+                padding: 10px;
+            }
+
+            .balloon {
+                padding: 20px;
+                font-size: 1.1rem; /* Reducir tamaño de la fuente en móviles */
+            }
+
+            .balloon h2 {
+                font-size: 1.7rem; /* Aumentar el tamaño de los títulos dentro de los globos */
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2.5rem; /* Aún más pequeño en pantallas muy pequeñas */
+                margin-bottom: 15px;
+            }
+
+            .balloon {
+                padding: 15px;
+            }
+
+            .balloon h2 {
+                font-size: 1.5rem; /* Ajuste para dispositivos más pequeños */
+            }
+        }
+
     </style>
 </head>
 <body>
 
-<h1> <i class="fas fa-comment"></i> Chat 7-3</h1>
-<div id="chat-container"></div>
+    <h1>CHAT</h1>
 
-<!-- Barra para ingresar el nombre de usuario -->
-<div class="messageBox">
-    <input type="text" id="usernameInput" placeholder="Introduce tu nombre de usuario" />
-</div>
+    <div class="container">
+        <!-- Globo de texto Materia -->
+        <div class="balloon">
+            <h2>Zona Deshabilitada</h2>
+            <p>Esta Zona se encuentra Deshabilitada. Razon: Administrador Cerro el Servidor</p>
+        </div>
 
-<!-- Entrada para el mensaje y botón de enviar -->
-<div class="messageBox">
-    <div class="fileUploadWrapper">
-        <label for="file">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 337 337">
-                <circle stroke-width="20" stroke="#6c6c6c" fill="none" r="158.5" cy="168.5" cx="168.5"></circle>
-                <path stroke-linecap="round" stroke-width="20" stroke="#6c6c6c" d="M253 169.5H118.5l64.5-64.5"></path>
-                <span class="tooltip">Adjuntar Archivo</span>
-            </svg>
-        </label>
-        <input type="file" id="file" name="file" />
-    </div>
-    <input required placeholder="Escribe un mensaje..." type="text" id="messageInput" />
-    <button id="sendButton">
-        <span>Enviar</span>
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 664 663">
-            <path fill="none" d="M646.293 331.888L17.7538 17.6187L155.245 331.888M646.293 331.888L17.753 646.157L155.245 331.888M646.293 331.888L318.735 330.228L155.245 331.888"></path>
-            <path stroke-linejoin="round" stroke-linecap="round" stroke-width="33.67" stroke="#6c6c6c" d="M646.293 331.888L17.7538 17.6187L155.245 331.888M646.293 331.888L17.753 646.157L155.245 331.888M646.293 331.888L318.735 330.228L155.245 331.888"></path>
-        </svg>
-    </button>
-</div>
+     <button class="back-button" onclick="window.location.href='https://mcstellarproduction.github.io/7-3_siteweb/estudio_zone_opccions2';">
+        <span class="icon">&#8592;</span> Back
+     </button>
 
-<!-- Botón de regreso -->
-<button class="back-button" id="backButton">
-    <i class="icon fas fa-arrow-left"></i> Regresar
-</button>
-
-<script>
-    const chatContainer = document.getElementById('chat-container');
-    const messageInput = document.getElementById('messageInput');
-    const sendButton = document.getElementById('sendButton');
-    const usernameInput = document.getElementById('usernameInput');
-    const backButton = document.getElementById('backButton');
-
-    sendButton.addEventListener('click', () => {
-        const currentUsername = usernameInput.value.trim();
-        const message = messageInput.value.trim();
-
-        if (!currentUsername) {
-            alert('Por favor, introduce tu nombre de usuario antes de enviar un mensaje.');
-            return;
-        }
-
-        if (message === '/clear') {
-            clearMessages();
-            return;
-        }
-
-        if (message) {
-            const messageData = {
-                username: currentUsername,
-                message: message,
-                timestamp: Date.now()
-            };
-            saveMessage(messageData);
-            appendMessage(messageData);
-            messageInput.value = ''; // Limpiar el campo de mensaje
-        } else {
-            alert('Error: No has escrito un mensaje.');
-        }
-    });
-
-    function saveMessage(messageData) {
-        const messages = JSON.parse(localStorage.getItem('chatMessages')) || [];
-        messages.push(messageData);
-        localStorage.setItem('chatMessages', JSON.stringify(messages));
-    }
-
-    function loadMessages() {
-        const messages = JSON.parse(localStorage.getItem('chatMessages')) || [];
-        const now = Date.now();
-        chatContainer.innerHTML = ''; // Limpiar el chat antes de cargar
-        messages.forEach(messageData => {
-            // Verificar si el mensaje tiene menos de un día
-            if (now - messageData.timestamp < 86400000) { // 1 día en milisegundos
-                appendMessage(messageData);
-            }
-        });
-    }
-
-    function appendMessage({ username, message }) {
-        const messageDiv = document.createElement('div');
-        messageDiv.classList.add('message');
-        messageDiv.innerHTML = `
-            <i class="fas fa-user"></i><span class="username"> ${username}</span>: ${message}</div> 
-        `;
-        chatContainer.appendChild(messageDiv);
-
-        // Hacer que el mensaje se desplace hacia abajo
-        chatContainer.scrollTop = chatContainer.scrollHeight; // Desplazar hacia abajo automáticamente
-        setTimeout(() => {
-            messageDiv.style.opacity = 1; // Hacer visible el mensaje
-        }, 0); // Asegurarse de que se aplique la animación de entrada
-        messageDiv.addEventListener('click', () => disappearMessage(messageDiv));
-    }
-
-    function disappearMessage(messageDiv) {
-        messageDiv.classList.add('disappear'); // Añadir clase para desaparecer
-        messageDiv.style.transform = 'translateY(-20px)'; // Desplazar hacia arriba
-        messageDiv.style.opacity = '0'; // Desvanecer
-        setTimeout(() => {
-            messageDiv.remove(); // Eliminar después de la animación
-        }, 500); // Esperar el tiempo de la animación
-    }
-
-    function clearMessages() {
-        localStorage.removeItem('chatMessages'); // Limpiar los mensajes del localStorage
-        chatContainer.innerHTML = ''; // Limpiar el chat visualmente
-    }
-
-    backButton.addEventListener('click', () => {
-        // Redirigir a un enlace personalizado
-        window.location.href = "https://mcstellarproduction.github.io/7-3_siteweb/"; // Cambia esto por el enlace que desees
-    });
-
-    // Cargar mensajes al inicio
-    loadMessages();
-</script>
+    <footer>
+        Página Creada por: <a href="https://www.instagram.com/redaguilar218/" target="_blank">Luis Andres Zamora Aguilar</a>
+    </footer>
 
 </body>
 </html>
