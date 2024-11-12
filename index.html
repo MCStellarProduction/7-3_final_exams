@@ -152,6 +152,22 @@
             transition: transform 0.3s ease;
         }
 
+        /* Animación de entrada para los botones */
+        @keyframes buttonFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .button {
+            animation: buttonFadeIn 0.7s ease-out forwards;
+        }
+
     </style>
 </head>
 <body>
