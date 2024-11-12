@@ -184,42 +184,42 @@
 
     <div class="container">
         <!-- Opciones con iconos para las materias -->
-        <button class="button matematicas" onclick="redirectTo('https://mcstellarproduction.github.io/7-3_siteweb/e-matematicas')">
+        <a href="https://mcstellarproduction.github.io/7-3_siteweb/e-matematicas" class="button matematicas">
             <span class="button__icon-wrapper">
                 <i class="fas fa-signal"></i>
             </span>
             Matemáticas
-        </button>
-        <button class="button ciencias" onclick="redirectTo('https://mcstellarproduction.github.io/7-3_siteweb/e-ciencias')">
+        </a>
+        <a href="https://mcstellarproduction.github.io/7-3_siteweb/e-ciencias" class="button ciencias">
             <span class="button__icon-wrapper">
                 <i class="fas fa-flask"></i>
             </span>
             Ciencias
-        </button>
-        <button class="button estudios-sociales" onclick="redirectTo('https://mcstellarproduction.github.io/7-3_siteweb/e-estudios_sociales')">
+        </a>
+        <a href="https://mcstellarproduction.github.io/7-3_siteweb/e-estudios_sociales" class="button estudios-sociales">
             <span class="button__icon-wrapper">
                 <i class="fas fa-globe-americas"></i>
             </span>
             Estudios Sociales
-        </button>
-        <button class="button espanol" onclick="redirectTo('https://mcstellarproduction.github.io/7-3_siteweb/e-espanol')">
+        </a>
+        <a href="https://mcstellarproduction.github.io/7-3_siteweb/e-espanol" class="button espanol">
             <span class="button__icon-wrapper">
                 <i class="fas fa-book-open"></i>
             </span>
             Español
-        </button>
-        <button class="button ingles" onclick="redirectTo('https://mcstellarproduction.github.io/7-3_siteweb/e-ingles')">
+        </a>
+        <a href="https://mcstellarproduction.github.io/7-3_siteweb/e-ingles" class="button ingles">
             <span class="button__icon-wrapper">
                 <i class="fas fa-language"></i>
             </span>
             Inglés
-        </button>
-        <button class="button frances" onclick="redirectTo('https://mcstellarproduction.github.io/7-3_siteweb/e-frances')">
+        </a>
+        <a href="https://mcstellarproduction.github.io/7-3_siteweb/e-frances" class="button frances">
             <span class="button__icon-wrapper">
                 <i class="fas fa-comment-dots"></i>
             </span>
             Francés
-        </button>
+        </a>
     </div>
 
     <button class="back-button" onclick="window.location.href='https://mcstellarproduction.github.io/7-3_siteweb/exams_final_opccions1';">
@@ -232,20 +232,6 @@
 
     <!-- Font Awesome para los iconos -->
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-
-    <script>
-        // Función para redireccionar con animación
-        function redirectTo(url) {
-            // Animación de salida (escala)
-            const options = document.querySelectorAll('.button');
-            options.forEach(option => {
-                option.style.transform = 'scale(0)';
-            });
-            setTimeout(() => {
-                window.location.href = url;
-            }, 500); // Tiempo para que termine la animación
-        }
-    </script>
 
 </body>
 </html>
