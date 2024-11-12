@@ -181,7 +181,7 @@
         </a>
 
         <!-- Botón Volver -->
-        <a href="https://mcstellarproduction.github.io/7-3_siteweb/exams_final_opccions1" class="button volver" id="btn-volver">
+        <a href="javascript:void(0)" class="button volver" id="btn-volver">
             <span class="button__icon-wrapper">
                 <i class="fas fa-arrow-left"></i>
             </span>
@@ -211,41 +211,46 @@
             }, 300); // Tiempo de duración de la animación (300ms)
         }
 
-        // Función para el botón Volver, que redirige a la página anterior
+        // Función para el botón Volver, que redirige a un enlace específico
         function goBackWithAnimation(button) {
             button.classList.add('clicked');
             button.style.pointerEvents = 'none'; // Desactivar la interacción del botón durante la animación
             setTimeout(function() {
-                window.history.back(); // Regresar a la página anterior
+                window.location.href = "https://mcstellarproduction.github.io/7-3_siteweb/exams_final_opccions1"; // Redirigir al URL específico
             }, 300); // Esperar a que termine la animación
         }
 
         // Asignar eventos de clic a los botones
         document.getElementById('btn-matematicas').addEventListener('click', function(event) {
-            event.preventDefault(); // Evitar la redirección inmediata
+            event.preventDefault();
             redirectWithAnimation(this, "https://mcstellarproduction.github.io/7-3_siteweb/e-matematicas");
         });
+
         document.getElementById('btn-ciencias').addEventListener('click', function(event) {
             event.preventDefault();
             redirectWithAnimation(this, "https://mcstellarproduction.github.io/7-3_siteweb/e-ciencias");
         });
+
         document.getElementById('btn-estudios-sociales').addEventListener('click', function(event) {
             event.preventDefault();
             redirectWithAnimation(this, "https://mcstellarproduction.github.io/7-3_siteweb/e-estudios_sociales");
         });
+
         document.getElementById('btn-espanol').addEventListener('click', function(event) {
             event.preventDefault();
             redirectWithAnimation(this, "https://mcstellarproduction.github.io/7-3_siteweb/e-espanol");
         });
+
         document.getElementById('btn-ingles').addEventListener('click', function(event) {
             event.preventDefault();
             redirectWithAnimation(this, "https://mcstellarproduction.github.io/7-3_siteweb/e-ingles");
         });
+
         document.getElementById('btn-frances').addEventListener('click', function(event) {
             event.preventDefault();
             redirectWithAnimation(this, "https://mcstellarproduction.github.io/7-3_siteweb/e-frances");
         });
-        
+
         // Asignar evento de clic al botón Volver
         document.getElementById('btn-volver').addEventListener('click', function(event) {
             event.preventDefault();
