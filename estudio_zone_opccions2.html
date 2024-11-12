@@ -36,19 +36,6 @@
             background-clip: text; /* Clip para fondo en el texto */
             text-align: center;
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); /* Sombra para darle profundidad */
-            animation: slideDown 1s ease-out forwards; /* Animación de entrada */
-        }
-
-        /* Animación para el título */
-        @keyframes slideDown {
-            from {
-                transform: translateY(-50px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
         }
 
         /* Contenedor principal para los botones */
@@ -58,22 +45,8 @@
             justify-content: center;
             align-items: center;
             gap: 20px;
-            opacity: 0;
-            animation: fadeInZoom 2s forwards; /* Animación de entrada con zoom */
             max-width: 400px; /* Limitar el ancho del contenedor */
             width: 100%;
-        }
-
-        /* Animación fadeIn + zoom */
-        @keyframes fadeInZoom {
-            0% {
-                opacity: 0;
-                transform: scale(0.8);
-            }
-            100% {
-                opacity: 1;
-                transform: scale(1);
-            }
         }
 
         /* Estilo de los botones */
@@ -97,6 +70,12 @@
             transition: color 0.3s ease;
             width: 100%;
             height: 60px;
+        }
+
+        /* Animación para los botones al hacer clic */
+        .button:active {
+            transform: scale(0.95);
+            transition: transform 0.2s ease;
         }
 
         /* Estilos para el hover */
@@ -125,44 +104,12 @@
             color: #fff;
         }
 
-        /* Animación para los botones */
-        .button:hover svg {
-            transform: rotate(90deg);
-            background-color: #fff;
-            border-color: transparent;
-        }
-
         .matematicas { --clr: #81c784; } /* Verde */
         .ciencias { --clr: #64b5f6; } /* Azul */
         .estudios-sociales { --clr: #ffb74d; } /* Naranja */
         .espanol { --clr: #ba68c8; } /* Morado */
         .ingles { --clr: #ffd54f; } /* Amarillo */
         .frances { --clr: #ff8a65; } /* Rojo */
-
-        /* Estilo para el botón de retroceso */
-        .back-button {
-            background-color: #007bff; /* Azul */
-            color: white; 
-            border: none; 
-            border-radius: 10rem; 
-            padding: 0.75rem 1.5rem; 
-            font-size: 16px; 
-            cursor: pointer; 
-            display: flex;
-            align-items: center;
-            margin-top: 20px; /* Espacio entre los botones y el botón de retroceso */
-            transition: background-color 0.3s, transform 0.3s;
-            white-space: nowrap;
-        }
-
-        .back-button:hover {
-            background-color: #0056b3; /* Azul oscuro al pasar el mouse */
-            transform: scale(1.05); /* Aumenta el tamaño al hacer hover */
-        }
-
-        .icon {
-            margin-right: 5px; /* Espacio entre icono y texto */
-        }
 
         /* Estilo para el footer */
         footer {
@@ -186,47 +133,43 @@
 
     <div class="container">
         <!-- Opciones con iconos para las materias -->
-        <a href="https://mcstellarproduction.github.io/7-3_siteweb/e-matematicas" class="button matematicas">
+        <a href="https://mcstellarproduction.github.io/7-3_siteweb/e-matematicas" class="button matematicas" id="btn-matematicas">
             <span class="button__icon-wrapper">
                 <i class="fas fa-signal"></i>
             </span>
             Matemáticas
         </a>
-        <a href="https://mcstellarproduction.github.io/7-3_siteweb/e-ciencias" class="button ciencias">
+        <a href="https://mcstellarproduction.github.io/7-3_siteweb/e-ciencias" class="button ciencias" id="btn-ciencias">
             <span class="button__icon-wrapper">
                 <i class="fas fa-flask"></i>
             </span>
             Ciencias
         </a>
-        <a href="https://mcstellarproduction.github.io/7-3_siteweb/e-estudios_sociales" class="button estudios-sociales">
+        <a href="https://mcstellarproduction.github.io/7-3_siteweb/e-estudios_sociales" class="button estudios-sociales" id="btn-estudios-sociales">
             <span class="button__icon-wrapper">
                 <i class="fas fa-globe-americas"></i>
             </span>
             Estudios Sociales
         </a>
-        <a href="https://mcstellarproduction.github.io/7-3_siteweb/e-espanol" class="button espanol">
+        <a href="https://mcstellarproduction.github.io/7-3_siteweb/e-espanol" class="button espanol" id="btn-espanol">
             <span class="button__icon-wrapper">
                 <i class="fas fa-book-open"></i>
             </span>
             Español
         </a>
-        <a href="https://mcstellarproduction.github.io/7-3_siteweb/e-ingles" class="button ingles">
+        <a href="https://mcstellarproduction.github.io/7-3_siteweb/e-ingles" class="button ingles" id="btn-ingles">
             <span class="button__icon-wrapper">
                 <i class="fas fa-language"></i>
             </span>
             Inglés
         </a>
-        <a href="https://mcstellarproduction.github.io/7-3_siteweb/e-frances" class="button frances">
+        <a href="https://mcstellarproduction.github.io/7-3_siteweb/e-frances" class="button frances" id="btn-frances">
             <span class="button__icon-wrapper">
                 <i class="fas fa-comment-dots"></i>
             </span>
             Francés
         </a>
     </div>
-
-    <button class="back-button" id="backButton">
-        <span class="icon">&#8592;</span> Volver
-    </button>
 
     <footer>
         Página Creada por: <a href="https://www.instagram.com/redaguilar218/" target="_blank">Luis Andres Zamora Aguilar</a>
@@ -236,12 +179,38 @@
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 
     <script>
-        // Redirección automática después de la animación
-        window.addEventListener('load', function () {
-            // Tiempo de espera igual al de la animación
-            setTimeout(function () {
-                window.location.href = "https://mcstellarproduction.github.io/7-3_siteweb/e-matematicas"; // Página de redirección
-            }, 2500); // 2.5 segundos (tiempo de la animación)
+        // Función para ejecutar la animación y redirigir
+        function redirectWithAnimation(button, url) {
+            // Aplicar animación de "clic" (reducir tamaño temporalmente)
+            button.classList.add('button-clicked');
+
+            // Desactivar temporalmente el enlace para evitar redirección instantánea
+            button.style.pointerEvents = 'none';
+
+            // Esperamos el tiempo de la animación (200ms) y luego redirigimos
+            setTimeout(function() {
+                window.location.href = url;
+            }, 200); // Duración de la animación (200ms)
+        }
+
+        // Asignar eventos de clic a los botones
+        document.getElementById('btn-matematicas').addEventListener('click', function() {
+            redirectWithAnimation(this, "https://mcstellarproduction.github.io/7-3_siteweb/e-matematicas");
+        });
+        document.getElementById('btn-ciencias').addEventListener('click', function() {
+            redirectWithAnimation(this, "https://mcstellarproduction.github.io/7-3_siteweb/e-ciencias");
+        });
+        document.getElementById('btn-estudios-sociales').addEventListener('click', function() {
+            redirectWithAnimation(this, "https://mcstellarproduction.github.io/7-3_siteweb/e-estudios_sociales");
+        });
+        document.getElementById('btn-espanol').addEventListener('click', function() {
+            redirectWithAnimation(this, "https://mcstellarproduction.github.io/7-3_siteweb/e-espanol");
+        });
+        document.getElementById('btn-ingles').addEventListener('click', function() {
+            redirectWithAnimation(this, "https://mcstellarproduction.github.io/7-3_siteweb/e-ingles");
+        });
+        document.getElementById('btn-frances').addEventListener('click', function() {
+            redirectWithAnimation(this, "https://mcstellarproduction.github.io/7-3_siteweb/e-frances");
         });
     </script>
 
