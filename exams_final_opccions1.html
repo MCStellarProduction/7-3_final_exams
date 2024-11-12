@@ -73,57 +73,66 @@
             }
         }
 
-        /* Estilos del botón */
+        /* Estilo del botón */
         .button {
-            line-height: 1;
-            text-decoration: none;
-            display: inline-flex;
-            border: none;
-            cursor: pointer;
-            align-items: center;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
             gap: 0.75rem;
-            background-color: var(--clr);
+            align-items: center;
+            background-color: #0A0D2D; /* Color de fondo */
             color: #fff;
-            border-radius: 10rem;
-            font-weight: 600;
             padding: 0.75rem 1.5rem;
-            padding-left: 20px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            transition: background-color 0.3s, transform 0.3s;
+            border-radius: 9999px; /* Bordes redondeados */
             position: relative;
             z-index: 1;
-        }
-
-        .button__icon-wrapper {
-            flex-shrink: 0;
-            width: 25px;
-            height: 25px;
-            position: relative;
-            color: var(--clr);
-            background-color: #fff;
-            border-radius: 50%;
-            display: grid;
-            place-items: center;
+            text-decoration: none;
+            font-size: 1.25rem;
+            text-align: center;
+            border: 2px solid #0A0D2D;
             overflow: hidden;
             transition: color 0.3s ease;
         }
 
-        /* Hover effect */
+        /* Efecto del botón (hover) */
         .button:hover {
-            background-color: #000;
-            transform: scale(1.05);
+            color: #fff;
         }
 
+        .button:hover svg {
+            transform: rotate(90deg);
+            background-color: #fff;
+            border-color: transparent;
+        }
+
+        /* Icono dentro del botón */
+        .button__icon-wrapper {
+            display: grid;
+            place-items: center;
+            background-color: #fff;
+            color: #0A0D2D;
+            border-radius: 50%;
+            padding: 0.25rem;
+            transition: background-color 0.3s, transform 0.3s ease;
+            width: 40px;
+            height: 40px;
+        }
+
+        /* Animación del icono */
+        .button__icon-wrapper svg {
+            transition: transform 0.3s ease, background-color 0.3s;
+            transform: rotate(45deg);
+            background-color: transparent;
+            padding: 8px;
+            border: 2px solid #0A0D2D;
+            border-radius: 50%;
+        }
+
+        /* Efectos en hover */
         .button:hover .button__icon-wrapper {
-            color: #000;
-        }
-
-        /* Animación de salida para botones */
-        .fade-out {
-            transform: scale(0);
-            transition: transform 0.3s ease;
+            transform: scale(1.5);
+            background-color: #0A0D2D;
+            color: #fff;
         }
 
         footer {
@@ -146,33 +155,25 @@
     <h1>Grupo 7-3</h1>
 
     <div class="container">
-        <!-- Botones con iconos, diseño y animación -->
-        <button class="button" style="--clr: #81c784;" onclick="redirectTo('https://mcstellarproduction.github.io/7-3_siteweb/eximidos_zone')">
-            <span class="button__icon-wrapper">
-                <svg viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg" class="button__icon-svg" width="10">
-                    <path d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z" fill="currentColor"></path>
-                </svg>
-            </span>
+        <!-- Botones con el nuevo diseño -->
+        <button class="button" onclick="redirectTo('https://mcstellarproduction.github.io/7-3_siteweb/eximidos_zone')">
             Eximidos
-        </button>
-        <button class="button" style="--clr: #ffd54f;" onclick="redirectTo('https://mcstellarproduction.github.io/7-3_siteweb/estudio_zone_opccions2')">
             <span class="button__icon-wrapper">
-                <svg viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg" class="button__icon-svg" width="10">
-                    <path d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z" fill="currentColor"></path>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 19" class="w-8 h-8">
+                    <path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658 -0.0976311 7.68342 -0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z"></path>
                 </svg>
             </span>
+        </button>
+
+        <button class="button" onclick="redirectTo('https://mcstellarproduction.github.io/7-3_siteweb/estudio_zone_opccions2')">
             Estudio
+            <span class="button__icon-wrapper">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 19" class="w-8 h-8">
+                    <path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658 -0.0976311 7.68342 -0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z"></path>
+                </svg>
+            </span>
         </button>
     </div>
-
-    <button class="button" style="--clr: #007bff;" onclick="redirectTo('https://mcstellarproduction.github.io/7-3_siteweb/');">
-        <span class="button__icon-wrapper">
-            <svg viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg" class="button__icon-svg" width="10">
-                <path d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z" fill="currentColor"></path>
-            </svg>
-        </span>
-        Volver
-    </button>
 
     <footer>
         Página Creada por: <a href="https://www.instagram.com/redaguilar218/" target="_blank">Luis Andres Zamora Aguilar</a>
@@ -184,16 +185,13 @@
     <script>
         // Función para redireccionar con animación
         function redirectTo(url) {
-            // Animación de salida (escala)
             const buttons = document.querySelectorAll('.button');
             buttons.forEach(button => {
                 button.classList.add('fade-out');
             });
-            
-            // Esperar a que termine la animación antes de redirigir
             setTimeout(() => {
                 window.location.href = url;
-            }, 300); // Esperamos que termine la animación antes de redirigir
+            }, 700); // Esperamos que termine la animación antes de redirigir
         }
     </script>
 
