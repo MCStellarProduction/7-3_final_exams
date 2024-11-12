@@ -67,18 +67,29 @@
             text-align: center;
             border: 2px solid #0A0D2D;
             overflow: hidden;
-            transition: color 0.3s ease;
             width: 100%;
             height: 60px;
+            transition: all 0.3s ease;
         }
 
-        /* Animación para los botones al hacer clic */
-        .button:active {
-            transform: scale(0.95);
-            transition: transform 0.2s ease;
+        /* Estilos de la animación al hacer clic */
+        .button.clicked {
+            animation: expand 0.3s forwards;
         }
 
-        /* Estilos para el hover */
+        @keyframes expand {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1); /* Expande el botón */
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Estilo para el hover */
         .button:hover {
             color: #fff;
         }
@@ -124,7 +135,6 @@
             text-decoration: none;
             color: #5c6bc0; /* Color del enlace en el footer */
         }
-
     </style>
 </head>
 <body>
@@ -179,37 +189,43 @@
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 
     <script>
-        // Función para ejecutar la animación y redirigir
+        // Función para aplicar la animación y luego redirigir
         function redirectWithAnimation(button, url) {
-            // Aplicar animación de "clic" (reducir tamaño temporalmente)
-            button.classList.add('button-clicked');
+            // Añadir la clase 'clicked' para activar la animación
+            button.classList.add('clicked');
 
-            // Desactivar temporalmente el enlace para evitar redirección instantánea
+            // Desactivar el enlace para evitar que se haga la redirección inmediatamente
             button.style.pointerEvents = 'none';
 
-            // Esperamos el tiempo de la animación (200ms) y luego redirigimos
+            // Esperar a que termine la animación antes de redirigir
             setTimeout(function() {
                 window.location.href = url;
-            }, 200); // Duración de la animación (200ms)
+            }, 300); // Tiempo de duración de la animación (300ms)
         }
 
         // Asignar eventos de clic a los botones
-        document.getElementById('btn-matematicas').addEventListener('click', function() {
+        document.getElementById('btn-matematicas').addEventListener('click', function(event) {
+            event.preventDefault(); // Evitar la redirección inmediata
             redirectWithAnimation(this, "https://mcstellarproduction.github.io/7-3_siteweb/e-matematicas");
         });
-        document.getElementById('btn-ciencias').addEventListener('click', function() {
+        document.getElementById('btn-ciencias').addEventListener('click', function(event) {
+            event.preventDefault();
             redirectWithAnimation(this, "https://mcstellarproduction.github.io/7-3_siteweb/e-ciencias");
         });
-        document.getElementById('btn-estudios-sociales').addEventListener('click', function() {
+        document.getElementById('btn-estudios-sociales').addEventListener('click', function(event) {
+            event.preventDefault();
             redirectWithAnimation(this, "https://mcstellarproduction.github.io/7-3_siteweb/e-estudios_sociales");
         });
-        document.getElementById('btn-espanol').addEventListener('click', function() {
+        document.getElementById('btn-espanol').addEventListener('click', function(event) {
+            event.preventDefault();
             redirectWithAnimation(this, "https://mcstellarproduction.github.io/7-3_siteweb/e-espanol");
         });
-        document.getElementById('btn-ingles').addEventListener('click', function() {
+        document.getElementById('btn-ingles').addEventListener('click', function(event) {
+            event.preventDefault();
             redirectWithAnimation(this, "https://mcstellarproduction.github.io/7-3_siteweb/e-ingles");
         });
-        document.getElementById('btn-frances').addEventListener('click', function() {
+        document.getElementById('btn-frances').addEventListener('click', function(event) {
+            event.preventDefault();
             redirectWithAnimation(this, "https://mcstellarproduction.github.io/7-3_siteweb/e-frances");
         });
     </script>
