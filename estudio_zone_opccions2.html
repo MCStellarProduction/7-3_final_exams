@@ -59,18 +59,20 @@
             align-items: center;
             gap: 20px;
             opacity: 0;
-            animation: fadeIn 1s forwards; /* Animación de entrada */
+            animation: fadeInZoom 2s forwards; /* Animación de entrada con zoom */
             max-width: 400px; /* Limitar el ancho del contenedor */
             width: 100%;
         }
 
-        /* Animación fadeIn */
-        @keyframes fadeIn {
-            from {
+        /* Animación fadeIn + zoom */
+        @keyframes fadeInZoom {
+            0% {
                 opacity: 0;
+                transform: scale(0.8);
             }
-            to {
+            100% {
                 opacity: 1;
+                transform: scale(1);
             }
         }
 
@@ -222,7 +224,7 @@
         </a>
     </div>
 
-    <button class="back-button" onclick="window.location.href='https://mcstellarproduction.github.io/7-3_siteweb/exams_final_opccions1';">
+    <button class="back-button" id="backButton">
         <span class="icon">&#8592;</span> Volver
     </button>
 
@@ -232,6 +234,16 @@
 
     <!-- Font Awesome para los iconos -->
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+    <script>
+        // Redirección automática después de la animación
+        window.addEventListener('load', function () {
+            // Tiempo de espera igual al de la animación
+            setTimeout(function () {
+                window.location.href = "https://mcstellarproduction.github.io/7-3_siteweb/e-matematicas"; // Página de redirección
+            }, 2500); // 2.5 segundos (tiempo de la animación)
+        });
+    </script>
 
 </body>
 </html>
