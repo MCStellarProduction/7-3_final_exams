@@ -24,7 +24,7 @@
             height: 100vh;
             color: #333;
             background-image: url('bg_6.jpg'); /* Fondo educativo */
-            background-size: 1200px 1200px; /* Tamaño del patrón */
+            background-size: cover;
         }
 
         h1 {
@@ -74,7 +74,7 @@
             }
         }
 
-        /* Estilos del botón */
+        /* Estilo de los botones */
         .button {
             font-family: 'Arial', sans-serif;
             display: flex;
@@ -97,17 +97,12 @@
             height: 60px;
         }
 
+        /* Estilos para el hover */
         .button:hover {
             color: #fff;
         }
 
-        .button:hover svg {
-            transform: rotate(90deg);
-            background-color: #fff;
-            border-color: transparent;
-        }
-
-        /* Iconos en los botones */
+        /* Estilo para los iconos dentro de los botones */
         .button__icon-wrapper {
             flex-shrink: 0;
             width: 25px;
@@ -122,14 +117,19 @@
             transition: transform 0.3s ease, background-color 0.3s ease;
         }
 
-        /* Efecto hover en los botones */
         .button:hover .button__icon-wrapper {
             transform: scale(1.5);
             background-color: #0A0D2D;
             color: #fff;
         }
 
-        /* Colores específicos para cada opción */
+        /* Animación para los botones */
+        .button:hover svg {
+            transform: rotate(90deg);
+            background-color: #fff;
+            border-color: transparent;
+        }
+
         .matematicas { --clr: #81c784; } /* Verde */
         .ciencias { --clr: #64b5f6; } /* Azul */
         .estudios-sociales { --clr: #ffb74d; } /* Naranja */
