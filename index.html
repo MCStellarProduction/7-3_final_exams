@@ -176,25 +176,25 @@
 
     <div class="container">
         <!-- Opciones con iconos -->
-        <button class="button examenes" onclick="redirectTo('https://mcstellarproduction.github.io/7-3_siteweb/exams_final_opccions1')">
+        <button class="button examenes" data-url="https://mcstellarproduction.github.io/7-3_siteweb/exams_final_opccions1">
             <span class="button__icon-wrapper">
                 <i class="fas fa-pencil-alt"></i>
             </span>
             Examenes Finales
         </button>
-        <button class="button lista" onclick="redirectTo('https://mcstellarproduction.github.io/7-3_siteweb/lista_del_grupo')">
+        <button class="button lista" data-url="https://mcstellarproduction.github.io/7-3_siteweb/lista_del_grupo">
             <span class="button__icon-wrapper">
                 <i class="fas fa-users"></i>
             </span>
             Lista del Grupo
         </button>
-        <button class="button anuncios" onclick="redirectTo('https://mcstellarproduction.github.io/7-3_siteweb/anuncios')">
+        <button class="button anuncios" data-url="https://mcstellarproduction.github.io/7-3_siteweb/anuncios">
             <span class="button__icon-wrapper">
                 <i class="fas fa-bullhorn"></i>
             </span>
             Anuncios
         </button>
-        <button class="button chat" onclick="redirectTo('https://mcstellarproduction.github.io/7-3_siteweb/chat')">
+        <button class="button chat" data-url="https://mcstellarproduction.github.io/7-3_siteweb/chat">
             <span class="button__icon-wrapper">
                 <i class="fas fa-comment-dots"></i>
             </span>
@@ -217,10 +217,24 @@
             options.forEach(option => {
                 option.classList.add('fade-out');
             });
+
             setTimeout(() => {
                 window.location.href = url;
-            }, 300); // Esperamos que termine la animación antes de redirigir
+            }, 700); // Esperamos a que termine la animación antes de redirigir
         }
+
+        // Añadir evento de clic a cada botón
+        const buttons = document.querySelectorAll('.button');
+        buttons.forEach(button => {
+            button.addEventListener('click', function() {
+                const url = this.getAttribute('data-url');
+                // Esperar que termine la animación antes de redirigir
+                this.classList.add('fade-out');
+                setTimeout(() => {
+                    window.location.href = url;
+                }, 700); // Tiempo para esperar a que se complete la animación
+            });
+        });
     </script>
 
 </body>
